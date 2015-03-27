@@ -1,6 +1,6 @@
 <a href="/"><h3>< back</h3></a>
 <h1>Create a New Project</h1>
-<%= form_for @project do |f| %>
+<%= form_for Project.new do |f| %>
   <table>
     <tr>
       <td><%= f.label :title %></td>
@@ -26,12 +26,3 @@
     <tr><td><%= f.submit "Add Project" %></td></tr>
   </table>
 <% end %>
-
-<!--
-t.integer  "user_id",     null: false
-t.string   "title",       null: false
-t.string   "location",    null: false
-t.string   "coordinates"
-t.string   "description"
-t.datetime "date"
--->

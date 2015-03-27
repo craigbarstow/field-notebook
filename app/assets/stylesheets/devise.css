@@ -1,0 +1,30 @@
+#background-img {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+  display: block;
+  background-color: #cccccc;
+  background-image: url('http://phandroid.s3.amazonaws.com/wp-content/uploads/2014/10/mountains.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+/*
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+*/
+}
+
+#devise-wrapper {
+  margin-top: 15rem;
+  background-color: rgba(200,200,200,.7);
+  padding: 2rem;
+  border-radius: .2em;
+}

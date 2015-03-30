@@ -1,4 +1,4 @@
-<a href="/"><h3>< back</h3></a>
+<%= link_to "< Back", projects_path, class: 'button radius' %>
 <h1>Create a New Project</h1>
 <%= form_for Project.new do |f| %>
   <table>
@@ -23,6 +23,6 @@
       <td><%= f.label :description %></td>
       <td><%= f.text_area :description,  :class => 'small-12.columns'%></td>
     </tr>
-    <tr><td><%= f.submit "Add Project" %></td></tr>
+    <tr><td><%= f.submit "Add Project", class: 'button radius' %></td></tr>
   </table>
 <% end %>

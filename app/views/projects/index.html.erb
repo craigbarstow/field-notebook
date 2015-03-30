@@ -1,12 +1,18 @@
-<%= link_to "Create a New Project", new_project_path %>
 <div>
-<% @projects.each do |project| %>
-  <%= link_to project do %>
+<% if @projects.length == 0 %>
   <div>
-    <h2><%= project.title %></h2>
-    <h3><%= project.location %></h3>
-    <h3><%= project.date %></h3>
+    <h1>You Have No Projects</h1>
   </div>
+<% else %>
+  <% @projects.each do |project| %>
+    <%= link_to project do %>
+    <div>
+      <h2><%= project.title %></h2>
+      <h3><%= project.location %></h3>
+      <h3><%= project.date %></h3>
+    </div>
+    <% end %>
   <% end %>
 <% end %>
 </div>
+<%= link_to "Create a New Project", new_project_path, class: "button radius" %>

@@ -1,0 +1,10 @@
+<%= link_to "< Back", projects_path, class: 'button radius' %>
+<%= button_to "delete",
+      {:controller => :projects, action: 'destroy', id: @project.id },
+      method: :delete, class: 'button radius' %>
+<div>
+  <h2><%= @project.title %><h2>
+  <h4>Location: <%= @project.location %></h4>
+  <h4>Coordinates: <%= @project.coordinates %></h4>
+  <p>Description: <%= @project.description %></p>
+</div>

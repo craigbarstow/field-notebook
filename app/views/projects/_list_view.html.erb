@@ -1,0 +1,20 @@
+<div class="small-3 columns index-search-wrapper">
+  <p>Search Stuff goes here</p>
+</div>
+<div class="small-9 columns">
+<% if @projects.length == 0 %>
+  <div>
+    <h1>You Have No Projects</h1>
+  </div>
+<% else %>
+  <% @projects.each do |project| %>
+    <%= link_to project do %>
+      <div class="project-wrapper">
+        <h2 class="project-index-title"><%= project.title %></h2>
+        <h3>Location: <%= project.location %></h3>
+        <h3>Date: <%= project.date %></h3>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+</div>

@@ -1,10 +1,19 @@
-<%= link_to "< Back", projects_path, class: 'button radius' %>
-<%= button_to "delete",
-      {:controller => :projects, action: 'destroy', id: @project.id },
-      method: :delete, class: 'button radius' %>
-<div>
-  <h2><%= @project.title %><h2>
-  <h4>Location: <%= @project.location %></h4>
-  <h4>Coordinates: <%= @project.coordinates %></h4>
-  <p>Description: <%= @project.description %></p>
+<div id="show-link-wrapper" class="row">
+  <div class="small-3 column">
+    <%= link_to "< Home", projects_path, class: 'button large' %>
+  </div>
+  <div class="small-3 column">
+    <%= button_to "Edit Project",
+          {:controller => :projects, action: 'destroy', id: @project.id },
+          method: :delete, class: 'button large' %>
+  </div>
+</div>
+<div class="row project-wrapper">
+  <div class="small-10 columns">
+    <h2><%= @project.title %><h2>
+    <h4>Location: <%= @project.location %></h4>
+    <h4>Coordinates: <%= @project.coordinates %></h4>
+    <h4>Date: <%= @project.date %></h4>
+    <p>Description: <%= @project.description %></p>
+  </div>
 </div>

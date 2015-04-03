@@ -6,15 +6,12 @@ class ProjectsController < ApplicationController
 
   def create
     proj = project_params
-    day = proj["date(3i)"]
-    month = proj["date(2i)"]
-    year = proj["date(1i)"]
-    date = "#{day}-#{month}-#{year}".to_datetime
 
     @new_project = Project.create(
       user_id: current_user.id,
       title: proj[:title],
-      date: date,
+      date: DateCreator.create_datetime(proj["date(3i)"],
+        proj["date(2i)"], proj["date(1i)"]),
       location: proj[:location],
       coordinates: proj[:coordinates],
       description: proj[:description]

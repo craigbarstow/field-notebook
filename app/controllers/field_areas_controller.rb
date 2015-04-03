@@ -1,0 +1,3 @@
+class FieldAreasController < ApplicationController
+
+end

@@ -3,7 +3,7 @@
     <%= link_to "< Home", projects_path, class: 'button large' %>
   </div>
   <div class="small-3 column">
-    <%= button_to "Edit Project",
+    <%= button_to "Delete Project",
           {:controller => :projects, action: 'destroy', id: @project.id },
           method: :delete, class: 'button large' %>
   </div>

@@ -38,7 +38,30 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
 
-  protected
+  #build map json and return it
+  def map
+    if params[:mapid] == 'index'
+      map_data = []
+      projects = Project.where(user_id: current_user.id)
+      projects.each do |project|
+        if project.coordinates
+          project_hash = {
+            path: project_path(project),
+            title: project.title,
+            date: project.date,
+            coordinates: project.coordinates
+          }
+          map_data << project_hash
+        end
+      end
+      respond_to do |format|
+        format.json { render :json => map_data }
+      end
+    end
+  end
+
+  private
+
   def project_params
     params.require(:project).permit(:title, :date, :location, :coordinates,
       :description)

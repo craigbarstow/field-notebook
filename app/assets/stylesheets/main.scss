@@ -45,7 +45,7 @@ body {
 }
 
 .row {
-  max-width: $wide-row-width;
+  //max-width: $wide-row-width;
 }
 
 /*****************************************
@@ -87,7 +87,7 @@ Projects Index
 #map-canvas {
   width: 100%;
   max-width: $wide-row-width;
-  height: 800px;
+  height: 40rem;
 }
 
 .index-search-wrapper {

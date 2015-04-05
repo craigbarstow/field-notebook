@@ -47,5 +47,10 @@ $(document).ready(function() {
         map.setZoom(12);
       }
     });
+
+    //fix to load all map tiles on index page
+    $("#map-tab").click(function() {
+      map.invalidateSize();
+    });
   }
 });

@@ -4,6 +4,10 @@ class ProjectsController < ApplicationController
     @projects = Project.all.where(user_id: current_user.id)
   end
 
+  def new
+    @project = Project.new #FIXME, this doesnt pass the object properly to form
+  end
+
   def create
     proj = project_params
 
@@ -25,12 +29,36 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def new
-    @project = Project.new() #FIXME, this doesnt pass the object properly to form
-  end
-
   def show
     @project = Project.find(params[:id])
+  end
+
+  def edit
+    @project = Project.find(params[:id])
+  end
+
+  def update
+    # params[:id]
+    # new_question_data = params[:question]
+    # question = Question.find(params[:id])
+    # question.title = new_question_data[:title]
+    # question.description = new_question_data[:description]
+    # if question.save
+    #   flash[:notice] = ["Question Successfully Updated"]
+    #   redirect_to(questions_path + "/#{question.id}")
+    # else
+    #   flash[:notice] = question.errors.full_messages
+    #   redirect_to(questions_path + "/#{question.id}")
+    # end
+    project = Project.find(params[:id])
+    project.update_attributes(project_params)
+    if project.save
+      flash[:notice] = ["Project Successfully Updated"]
+      redirect_to(projects_path(project))
+    else
+      flash[:notice] = @question.errors.full_messages
+      redirect_to(projects_path(project))
+    end
   end
 
   def destroy

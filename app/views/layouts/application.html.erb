@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <!--<div id="background-img"></div>-->
+  <div id="background-img"></div>
 
   <nav class="top-bar">
     <ul class="title-area">
@@ -44,6 +44,7 @@
 
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag 'application', "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js" %>
+  <%= javascript_include_tag 'application', "http://cdn.quilljs.com/0.19.10/quill.js" %>
   <%= yield :extra_footer %>
 </body>
 </html>

@@ -14,4 +14,14 @@
     <h4>Date: <%= @project.date %></h4>
     <p>Description: <%= @project.description %></p>
   </div>
+  <button id="toggle-quill">Edit Project</button>
+  <div class="small-10 columns quill-wrapper">
+    <div id="quill-toolbar">
+      <button class="ql-bold">Bold</button>
+      <button class="ql-italic">Italic</button>
+    </div>
+    <div id="editor">
+      <div>Text Goes Here!</div>
+    </div>
+  </div>
 </div>

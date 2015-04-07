@@ -1,21 +1,36 @@
 $(document).ready(function(){
-  var quillEnabled = false;
+  //only initialize quill if quill specific div is present
+  if ($( "#quill-wrapper" ).length ) {
+    //start with quill div hidden
+    $("#quill-wrapper").hide();
 
-  $("#toggle-quill").click(function(){
-    if (quillEnabled) {
-      initializeQuill();
-    } else {
-      hideQuill();
-    }
-  });
+    var quillEnabled = false;
+    var quill;
 
-  function initializeQuill() {
-    var quill = new Quill('#editor');
+    //config stuff
+    quill = new Quill('#editor');
     quill.addModule('toolbar', { container: '#quill-toolbar' });
-  }
 
-  function hideQuill() {
-    
-  }
+    $("#toggle-quill").click(function(){
+      if (!quillEnabled) {
+        quillEnabled = true;
+        showQuill();
+      } else {
+        quillEnabled = false;
+        hideQuill();
+      }
+    });
 
+    function showQuill() {
+      $("#project-content-wrapper").hide();
+      $("#quill-wrapper").show();
+      $("#toggle-quill").text("View Mode");
+    }
+
+    function hideQuill() {
+      $("#quill-wrapper").hide();
+      $("#project-content-wrapper").html(quill.getHTML()).show();
+      $("#toggle-quill").text("Edit Mode");
+    }
+  }
 });

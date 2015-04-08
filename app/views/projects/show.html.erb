@@ -14,42 +14,21 @@
     <h4>Coordinates: <%= @project.coordinates %></h4>
     <h4>Date: <%= @project.date %></h4>
     <p>Description: <%= @project.description %></p>
-    <div id="project-content-wrapper">
-    </div>
   </div>
   <div class="small-12 columns" id="quill-wrapper">
     <div id="toolbar">
       <span class="ql-format-group">
-        <span title="Bold" class="ql-format-button ql-bold"></span>
-        <span class="ql-format-separator"></span>
-        <span title="Italic" class="ql-format-button ql-italic"></span>
-        <span class="ql-format-separator"></span>
-        <span title="Underline" class="ql-format-button ql-underline"></span>
-        <span class="ql-format-separator"></span>
-        <span title="Strikethrough" class="ql-format-button ql-strike"></span>
-      </span>
-      <span class="ql-format-group">
-        <span title="List" class="ql-format-button ql-list"></span>
-        <span class="ql-format-separator"></span>
-        <span title="Bullet" class="ql-format-button ql-bullet"></span>
-        <span class="ql-format-separator"></span>
-        <select title="Text Alignment" class="ql-align">
-          <option value="left" label="Left" selected></option>
-          <option value="center" label="Center"></option>
-          <option value="right" label="Right"></option>
-          <option value="justify" label="Justify"></option>
-        </select>
-      </span>
-      <span class="ql-format-group">
-        <span title="Link" class="ql-format-button ql-link"></span>
-        <span class="ql-format-separator"></span>
-        <span title="Image" class="ql-format-button ql-image"></span>
+        <button class="ql-bold">Bold</button>
+        <button class="ql-italic">Italic</button>
+        <button class="ql-underline">Underline</button>
+        <button class="ql-list">List</button>
+        <button class="ql-bullet">Bullet</button>
+        <button class="ql-link">Link</button>
+        <button class="ql-image">Image</button>
       </span>
     </div>
     <div id="editor">
-      <div>Hello World!</div>
-      <div>Some initial <b>bold</b> text</div>
-      <div><br></div>
+
     </div>
   </div>
 </div>

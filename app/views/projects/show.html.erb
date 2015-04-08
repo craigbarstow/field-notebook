@@ -1,11 +1,11 @@
 <div id="show-link-wrapper" class="row">
-  <div class="small-3 column">
+  <div class="small-4 column">
     <%= link_to "< Home", projects_path, class: 'button large' %>
   </div>
-  <div class="small-3 column">
-    <%= link_to "Edit Project", edit_project_path(@project.id), class: 'button large' %>
+  <div class="small-4 column">
+    <%= link_to "Edit Basic Info", edit_project_path(@project.id), class: 'button large' %>
   </div>
-  <div class="small-3 column button large" id="toggle-quill">Edit Project</div>
+  <div class="small-4 column button large" id="toggle-quill">Edit Project Content</div>
 </div>
 <div class="row show-project-wrapper">
   <div class="small-10 columns">
@@ -17,13 +17,39 @@
     <div id="project-content-wrapper">
     </div>
   </div>
-  <div class="small-10 columns" id="quill-wrapper">
-    <div id="quill-toolbar">
-      <button class="ql-bold">Bold</button>
-      <button class="ql-italic">Italic</button>
+  <div class="small-12 columns" id="quill-wrapper">
+    <div id="toolbar">
+      <span class="ql-format-group">
+        <span title="Bold" class="ql-format-button ql-bold"></span>
+        <span class="ql-format-separator"></span>
+        <span title="Italic" class="ql-format-button ql-italic"></span>
+        <span class="ql-format-separator"></span>
+        <span title="Underline" class="ql-format-button ql-underline"></span>
+        <span class="ql-format-separator"></span>
+        <span title="Strikethrough" class="ql-format-button ql-strike"></span>
+      </span>
+      <span class="ql-format-group">
+        <span title="List" class="ql-format-button ql-list"></span>
+        <span class="ql-format-separator"></span>
+        <span title="Bullet" class="ql-format-button ql-bullet"></span>
+        <span class="ql-format-separator"></span>
+        <select title="Text Alignment" class="ql-align">
+          <option value="left" label="Left" selected></option>
+          <option value="center" label="Center"></option>
+          <option value="right" label="Right"></option>
+          <option value="justify" label="Justify"></option>
+        </select>
+      </span>
+      <span class="ql-format-group">
+        <span title="Link" class="ql-format-button ql-link"></span>
+        <span class="ql-format-separator"></span>
+        <span title="Image" class="ql-format-button ql-image"></span>
+      </span>
     </div>
     <div id="editor">
-      <div>Text Goes Here!</div>
+      <div>Hello World!</div>
+      <div>Some initial <b>bold</b> text</div>
+      <div><br></div>
     </div>
   </div>
 </div>

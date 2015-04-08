@@ -108,13 +108,27 @@ Projects Show
 #editor {
   height: 500px;
   width: 100%;
+  background-color: #f6f6f6;
 }
 
 #quill-wrapper {
-  background-color: grey;
+
 }
 
+.ql-align {
+  max-width: 5rem;
+}
 
+.ql-format-button {
+  width: 3rem;
+  height: 3rem;
+  visibility: visible;
+  background-color: purple;
+}
+
+.ql-format-group {
+  background-color: red;
+}
 
 
 

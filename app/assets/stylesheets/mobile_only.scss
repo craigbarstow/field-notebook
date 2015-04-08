@@ -1,4 +1,4 @@
-// mobile only stylesheet 
+// mobile only stylesheet
 @media (max-width: 40em) {
   .devise-text-field {
     height: 5rem;
@@ -6,5 +6,9 @@
 
   #user_email {
     height: 10em;
+  }
+
+  .top-bar {
+    //background-color: red;
   }
 }

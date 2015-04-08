@@ -1,10 +1,11 @@
 <div id="show-link-wrapper" class="row">
-  <div class="small-3 column">
+  <div class="small-4 column">
     <%= link_to "< Home", projects_path, class: 'button large' %>
   </div>
-  <div class="small-3 column">
-    <%= link_to "Edit Project", edit_project_path(@project.id), class: 'button large' %>
+  <div class="small-4 column">
+    <%= link_to "Edit Basic Info", edit_project_path(@project.id), class: 'button large' %>
   </div>
+  <div class="small-4 column button large" id="toggle-quill">Edit Project Content</div>
 </div>
 <div class="row show-project-wrapper">
   <div class="small-10 columns">
@@ -13,5 +14,27 @@
     <h4>Coordinates: <%= @project.coordinates %></h4>
     <h4>Date: <%= @project.date %></h4>
     <p>Description: <%= @project.description %></p>
+  </div>
+  <div class="small-12 columns" id="quill-wrapper">
+    <div id="toolbar">
+      <span class="ql-format-group">
+        <select title="Size" class="ql-size">
+          <option value="10px">Small</option>
+          <option value="13px" selected>Normal</option>
+          <option value="18px">Large</option>
+          <option value="32px">Huge</option>
+        </select>
+        <button class="ql-bold">Bold</button>
+        <button class="ql-italic">Italic</button>
+        <button class="ql-underline">Underline</button>
+        <button class="ql-list">List</button>
+        <button class="ql-bullet">Bullet</button>
+        <button class="ql-link">Link</button>
+        <button class="ql-image">Image</button>
+      </span>
+    </div>
+    <div id="editor">
+
+    </div>
   </div>
 </div>

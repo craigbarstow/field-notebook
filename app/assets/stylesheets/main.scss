@@ -105,8 +105,19 @@ Projects Show
   background-color: $white;
 }
 
+#editor {
+  height: 500px;
+  width: 100%;
+  background-color: #f6f6f6;
+}
 
+#quill-wrapper {
 
+}
+
+.ql-align {
+  max-width: 5rem;
+}
 
 
 

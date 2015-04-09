@@ -2,7 +2,8 @@
 $(document).ready(function() {
   //only execute if there is a div to put map in
   if( document.getElementById('map-canvas') != null ) {
-    var esriWorldTopo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+    var esriWorldTopo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/re' +
+      'st/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
       {
        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
     });

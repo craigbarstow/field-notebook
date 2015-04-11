@@ -107,7 +107,6 @@ Projects Show
 
 #editor {
   height: 500px;
-  width: 100%;
   background-color: #f6f6f6;
 }
 
@@ -119,8 +118,13 @@ Projects Show
   max-width: 5rem;
 }
 
+.show-map {
+  height: 35rem;
+}
 
-
+#add-content-bar {
+  margin-top: 1rem;
+}
 
 
 

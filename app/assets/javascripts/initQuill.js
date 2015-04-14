@@ -1,4 +1,9 @@
 $(document).ready(function(){
+  //set project ID for use with ajax
+  var parser = document.createElement('a');
+  parser.href = window.location.href;
+  var projectID = parser.pathname.replace('/projects/','');
+
   var editor;
   var quillHTML = '<div id="toolbar" class="small-12 columns">' +
     '<span class="ql-format-group">' +
@@ -28,27 +33,36 @@ $(document).ready(function(){
     initQuill("#editor");
 
     $("#save-quill").click(function() {
-        alert("it works");
         //get quill editor contents
         textHTML = editor.getHTML();
         //clear content of div to remove editor
         $("#project-content").empty();
-        $("#project-content").html(textHTML);
+        //FIXME destroy editor object here somehow
+        //send ajax post request
+        var textAreaID = String(1);
+        var postPath = projectID+"/textareas/"+textAreaID;
+
+        //logic to determine which type of controller action should be used
+        if (true) {
+          postPath += "/create";
+        }
+
+        //append project id to query string
+        postPath += "?proj="+projectID;
+
+        $.post(postPath, {content: textHTML}, function(data){
+          console.log(data);
+          if (data["success"] == true) {
+            alert("succeeded");
+          } else {
+            alert("failed");
+          }
+        });
+
+        //return same string as success value if saved successfully; else errors
+        $("#project-content").html("<div id='quill-text'>"+textHTML+"</div>");
     });
   });
-
-  // $("#save-quill").click(function() {
-  //   /*
-  //   alert("it works");
-  //   //fix for double call issue
-  //   evt.stopImmediatePropagation()
-  //   //get quill editor contents
-  //   textHTML = editor.getHTML();
-  //   //clear content of div to remove editor
-  //   $("#project-content").html("");
-  //   $("#project-content").html(textHTML);
-  //   */
-  // });
 
   function initQuill(elementID) {
     editor = new Quill(elementID,

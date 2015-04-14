@@ -17,8 +17,14 @@
   <div id="project-content" class="small-12 columns">
   <% @project_contents.each do |content_item| %>
     <% if content_item[:type] == :text_area %>
-      <div class="text-area" id="<%= content_item[:content][:id] %>">
-        <%= content_item[:content][:content].html_safe %>
+      <div class="text-area small-12 columns" id="text-wrapper-<%= content_item[:content][:id] %>">
+        <% content_id = "text-area-#{content_item[:content][:id]}" %>
+        <div class="small-12 columns" id="<%= content_id %>">
+          <%= content_item[:content][:content].html_safe %>
+        </div>
+        <div class="button tiny edit-text-area-button" areaID="<%= content_id %>">
+          edit
+        </div>
       </div>
     <% end %>
   <% end %>

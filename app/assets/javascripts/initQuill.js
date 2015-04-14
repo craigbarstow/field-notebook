@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$( document ).ready(function() {
   //get project ID from url for use with ajax
   var parser = document.createElement('a');
   parser.href = window.location.href;
@@ -28,46 +28,70 @@ $(document).ready(function(){
   $("#add-txt-btn").click(function(evt){
     //fix for double call issue
     evt.stopImmediatePropagation();
+    initQuill(null);
+  });
 
+  function initQuill(divID) {
     $("#project-content").append(quillHTML);
-    initQuill("#editor");
+    var actionString = "create";
+
+    if (divID) {
+      textAreaID = divID.replace("#text-area-","");
+      actionString = "/"+ textAreaID +"/update";
+      //hide div containing content to be edited
+      $("#text-wrapper-"+textAreaID).hide();
+    }
+    //initialize editor on editor div
+    editor = new Quill("#editor",
+      { modules : { "toolbar" : { container : "#toolbar" }}}
+    );
+
+    if (divID) {
+      //set contents of editor if text area already exists
+      editor.setHTML($(divID).html());
+    }
 
     $("#save-quill").click(function() {
       //get quill editor contents
       textHTML = editor.getHTML();
 
-      //FIXME Get ID if exists, else, pass nil here
-      var textAreaID = String(1);
-      var postPath = projectID+"/textareas/"+textAreaID;
-
-      //logic to determine which type of controller action should be used
-      if (true) {
-        postPath += "/create";
-      }
-
+      var postPath = projectID+"/textareas/"+actionString;
       //append project id to query string
       postPath += "?proj="+projectID;
 
       $.post(postPath, {content: textHTML}, function(data){
-        console.log(data);
         if (data["success"] == true) {
           //clear content of quill div to remove editor
           $("#editor-wrapper").remove();
-          //FIXME destroy editor object here somehow
-          //display message in div //FIXME, dont use alert here
-          //FIXME mirror erb style in creating dropdown here
-          $("#project-content").append("<div id='quill-text'>"+textHTML+"</div>");
+          var contentID = "text-area-" + data["id"];
+          var textAreaHTML = '<div class="text-area small-12 columns" id="text-wrapper-'+data["id"]+'">' +
+              '<div class="small-12 columns" id="'+contentID+'">'+
+                textHTML +
+              '</div>' +
+              '<div class="button tiny edit-text-area-button" areaID="'+contentID+'">' +
+                'edit' +
+              '</div>' +
+            '</div>';
+          if (divID) {
+            //replace old text in hidden div with new text
+            $(divID).html(textHTML);
+            //stop hiding div
+            $("#text-wrapper-"+textAreaID).show();
+          } else {
+            $("#project-content").append(textAreaHTML);
+          }
           alert(data["message"]);
         } else {
           alert(data["message"]);
         }
       });
     });
-  });
+  };
 
-  function initQuill(elementID) {
-    editor = new Quill(elementID,
-      { modules : { "toolbar" : { container : "#toolbar" }}}
-    );
-  }
+  $(".edit-text-area-button").click(function (evt) {
+    //fix for double call issue
+    evt.stopImmediatePropagation();
+    var areaID = $(this).attr("areaID");
+    initQuill("#"+areaID);
+  });
 });

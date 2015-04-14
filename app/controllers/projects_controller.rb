@@ -1,7 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    #FIXME this is terrible syntax and wont work for larger tables
-    @projects = Project.all.where(user_id: current_user.id)
+    @projects = Project.where(user_id: current_user.id)
   end
 
   def new
@@ -31,6 +30,12 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @project_contents = []
+    @text_areas = TextArea.where(project_id: @project.id)
+    @text_areas.each do |text_area|
+      @project_contents << {type: :text_area, content: text_area}
+    end
+    @project_contents
   end
 
   def edit

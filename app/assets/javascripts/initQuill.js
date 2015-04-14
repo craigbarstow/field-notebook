@@ -1,11 +1,12 @@
 $(document).ready(function(){
-  //set project ID for use with ajax
+  //get project ID from url for use with ajax
   var parser = document.createElement('a');
   parser.href = window.location.href;
   var projectID = parser.pathname.replace('/projects/','');
 
   var editor;
-  var quillHTML = '<div id="toolbar" class="small-12 columns">' +
+  var quillHTML = '<div id="editor-wrapper" class="small-12 columns">' +
+  '<div id="toolbar" class="small-12 columns">' +
     '<span class="ql-format-group">' +
       '<select title="Size" class="ql-size small-2 columns">' +
         '<option value="12px" selected>Small</option>' +
@@ -19,9 +20,8 @@ $(document).ready(function(){
       '<span class="ql-list button small">List</span>' +
       '<span class="ql-bullet button small">Bullet</span>' +
     '</span>' +
-    '</div>' +
-      '<div id="editor" class="small-12 columns"></div>' +
-    '</div>' +
+  '</div>' +
+    '<div id="editor" class="small-12 columns"></div>' +
     '<span id="save-quill" class="button small">Save and Close Editor</span>' +
   '</div>';
 
@@ -33,34 +33,35 @@ $(document).ready(function(){
     initQuill("#editor");
 
     $("#save-quill").click(function() {
-        //get quill editor contents
-        textHTML = editor.getHTML();
-        //clear content of div to remove editor
-        $("#project-content").empty();
-        //FIXME destroy editor object here somehow
-        //send ajax post request
-        var textAreaID = String(1);
-        var postPath = projectID+"/textareas/"+textAreaID;
+      //get quill editor contents
+      textHTML = editor.getHTML();
 
-        //logic to determine which type of controller action should be used
-        if (true) {
-          postPath += "/create";
+      //FIXME Get ID if exists, else, pass nil here
+      var textAreaID = String(1);
+      var postPath = projectID+"/textareas/"+textAreaID;
+
+      //logic to determine which type of controller action should be used
+      if (true) {
+        postPath += "/create";
+      }
+
+      //append project id to query string
+      postPath += "?proj="+projectID;
+
+      $.post(postPath, {content: textHTML}, function(data){
+        console.log(data);
+        if (data["success"] == true) {
+          //clear content of quill div to remove editor
+          $("#editor-wrapper").remove();
+          //FIXME destroy editor object here somehow
+          //display message in div //FIXME, dont use alert here
+          //FIXME mirror erb style in creating dropdown here
+          $("#project-content").append("<div id='quill-text'>"+textHTML+"</div>");
+          alert(data["message"]);
+        } else {
+          alert(data["message"]);
         }
-
-        //append project id to query string
-        postPath += "?proj="+projectID;
-
-        $.post(postPath, {content: textHTML}, function(data){
-          console.log(data);
-          if (data["success"] == true) {
-            alert("succeeded");
-          } else {
-            alert("failed");
-          }
-        });
-
-        //return same string as success value if saved successfully; else errors
-        $("#project-content").html("<div id='quill-text'>"+textHTML+"</div>");
+      });
     });
   });
 

@@ -71,7 +71,11 @@ $( document ).ready(function() {
               '<div class="button tiny edit-text-area-button" areaID="'+contentID+'">' +
                 'edit' +
               '</div>' +
+              '<div class="button tiny delete-text-area-button" areaID="'+contentID+'">' +
+                'delete' +
+              '</div>' +
             '</div>';
+          console.log(textAreaHTML)
           if (divID) {
             //replace old text in hidden div with new text
             $(divID).html(textHTML);
@@ -94,4 +98,42 @@ $( document ).ready(function() {
     var areaID = $(this).attr("areaID");
     initQuill("#"+areaID);
   });
+
+  $(".delete-text-area-button").click(function (evt) {
+    //fix for double call issue
+    evt.stopImmediatePropagation();
+
+    var htmlID = $(this).attr("areaID")
+    var textAreaID = htmlID.replace("text-area-","");
+    var postPath = projectID+"/textareas/"+textAreaID+"/destroy?proj="+projectID;
+    $.post(postPath, function(data) {
+      if (data["success"] == true) {
+        //destroy div
+        $("#text-wrapper-"+textAreaID).remove();
+        alert("Text Area Successfully Deleted.");
+      } else {
+        alert("Failed to Delete Text Area.");
+      }
+    });
+  });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

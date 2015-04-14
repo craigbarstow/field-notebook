@@ -51,6 +51,20 @@ class TextAreasController < ApplicationController
     end
   end
 
+  def destroy
+    text_area_info = text_area_params
+    @text_area = TextArea.find(text_area_info[:id]);
+    if @text_area.destroy
+      respond_to do |format|
+        format.json { render :json => {success: true} }
+      end
+    else
+      respond_to do |format|
+        format.json { render :json => {success: false} }
+      end
+    end
+  end
+
   private
 
   def text_area_params

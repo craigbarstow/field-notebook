@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'projects/map', to: 'projects#map'
   post 'projects/:id/textareas/create', to: 'text_areas#create'
   post 'projects/:id/textareas/:id/update', to: 'text_areas#update'
+  post 'projects/:id/textareas/:id/destroy', to: 'text_areas#destroy'
 
   resources :projects, only: [:index, :new, :create, :show, :destroy, :edit, :update] do
     resources :text_areas, only: [:create, :update]

@@ -5,6 +5,7 @@
   <div class="small-4 column">
     <%= link_to "Edit Basic Info", edit_project_path(@project.id), class: 'button large' %>
   </div>
+  <div class="button large small-4 column" id="edit-view-mode-btn">Toggle Edit Mode</div>
 </div>
 <div class="row show-project-wrapper">
   <div class="small-10 columns">
@@ -22,11 +23,13 @@
         <div class="small-12 columns" id="<%= content_id %>">
           <%= content_item[:content][:content].html_safe %>
         </div>
-        <div class="button tiny edit-text-area-button" area-id="<%= content_id %>">
-          edit
-        </div>
-        <div class="button tiny delete-text-area-button" area-id="<%= content_id %>">
-          delete
+        <div class="edit-controls small-12 columns">
+          <div class="button tiny edit-text-area-button" area-id="<%= content_id %>">
+            edit
+          </div>
+          <div class="button tiny delete-text-area-button" area-id="<%= content_id %>">
+            delete
+          </div>
         </div>
       </div>
     <% end %>

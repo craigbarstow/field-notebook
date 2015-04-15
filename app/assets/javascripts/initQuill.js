@@ -1,4 +1,9 @@
+//hide all edit control bars
+// $(".edit-controls").hide();
+
 $( document ).ready(function() {
+  //set event handlers for relevant elements
+  resetEventHandlers();
   //get project ID from url for use with ajax
   var parser = document.createElement('a');
   parser.href = window.location.href;
@@ -68,11 +73,13 @@ $( document ).ready(function() {
               '<div class="small-12 columns" id="'+contentID+'">'+
                 textHTML +
               '</div>' +
-              '<div class="button tiny edit-text-area-button" area-id="'+contentID+'">' +
-                'edit' +
-              '</div>' +
-              '<div class="button tiny delete-text-area-button" area-id="'+contentID+'">' +
-                'delete' +
+              '<div class="edit-controls small-12 columns">' +
+                '<div class="button tiny edit-text-area-button" area-id="'+contentID+'">' +
+                  'edit' +
+                '</div>' +
+                '<div class="button tiny delete-text-area-button" area-id="'+contentID+'">' +
+                  'delete' +
+                '</div>' +
               '</div>' +
             '</div>';
 
@@ -83,6 +90,7 @@ $( document ).ready(function() {
             $("#text-wrapper-"+textAreaID).show();
           } else {
             $("#project-content").append(textAreaHTML);
+            resetEventHandlers();
           }
           alert(data["message"]);
         } else {
@@ -92,31 +100,41 @@ $( document ).ready(function() {
     });
   };
 
-  $(".edit-text-area-button").click(function (evt) {
-    //fix for double call issue
-    evt.stopImmediatePropagation();
-    var areaID = $(this).attr("area-id");
-    initQuill("#"+areaID);
-  });
-
-  $(".delete-text-area-button").click(function (evt) {
-    //fix for double call issue
-    evt.stopImmediatePropagation();
-    var htmlID = $(this).attr("area-id")
-    var textAreaID = htmlID.replace("text-area-","");
-    var postPath = projectID+"/textareas/"+textAreaID+"/destroy?proj="+projectID;
-    $.post(postPath, function(data) {
-      if (data["success"] == true) {
-        //destroy div
-        $("#text-wrapper-"+textAreaID).remove();
-        alert("Text Area Successfully Deleted.");
-      } else {
-        alert("Failed to Delete Text Area.");
-      }
+  function resetEventHandlers() {
+    $(".edit-text-area-button").click(function (evt) {
+      //fix for double call issue
+      evt.stopImmediatePropagation();
+      var areaID = $(this).attr("area-id");
+      initQuill("#"+areaID);
     });
-  });
-});
 
+    $(".delete-text-area-button").click(function (evt) {
+      //fix for double call issue
+      evt.stopImmediatePropagation();
+      var htmlID = $(this).attr("area-id")
+      var textAreaID = htmlID.replace("text-area-","");
+      var postPath = projectID+"/textareas/"+textAreaID+"/destroy?proj="+projectID;
+      $.post(postPath, function(data) {
+        if (data["success"] == true) {
+          //destroy div
+          $("#text-wrapper-"+textAreaID).remove();
+          alert("Text Area Successfully Deleted.");
+        } else {
+          alert("Failed to Delete Text Area.");
+        }
+      });
+    });
+
+    $(".text-area").hover(
+      function() {
+        $(this).find(".edit-controls").slideDown(300);
+      },
+      function() {
+        $(this).find(".edit-controls").slideUp(300);
+      }
+    );
+  }
+});
 
 
 

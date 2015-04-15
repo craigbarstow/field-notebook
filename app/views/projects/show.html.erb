@@ -40,4 +40,14 @@
     <div class="small-4 columns button large" id="add-img-btn">Add an Image</div>
     <div class="small-4 columns button large" id="add-map-btn">Add a Map</div>
   </div>
+  <div class="small-12 columns" id="img-upload-wrapper">
+    <%= form_for [@project, @photo] do |f| %>
+      <%= f.file_field :image %>
+
+      <%= f.label :caption %>
+      <%= f.text_area :caption %>
+
+      <%= f.submit "Add Photo" %>
+    <% end %>
+  <div>
 </div>

@@ -7,7 +7,6 @@ $(document).ready(function(){
       'id="'+mapID+'"></div>');
     addProjectMap(mapID);
 
-
     // initQuill("#editor");
 
     //stop double fire issue
@@ -27,5 +26,6 @@ $(document).ready(function(){
       zoom: 4
     });
     esriWorldTopo.addTo(map);
+    map.invalidateSize();
   }
 });

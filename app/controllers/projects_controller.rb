@@ -1,7 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    #FIXME this is terrible syntax and wont work for larger tables
-    @projects = Project.all.where(user_id: current_user.id)
+    @projects = Project.where(user_id: current_user.id)
   end
 
   def new
@@ -31,6 +30,12 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @project_contents = []
+    @text_areas = TextArea.where(project_id: @project.id)
+    @text_areas.each do |text_area|
+      @project_contents << {type: :text_area, content: text_area}
+    end
+    @project_contents
   end
 
   def edit
@@ -38,18 +43,6 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    # params[:id]
-    # new_question_data = params[:question]
-    # question = Question.find(params[:id])
-    # question.title = new_question_data[:title]
-    # question.description = new_question_data[:description]
-    # if question.save
-    #   flash[:notice] = ["Question Successfully Updated"]
-    #   redirect_to(questions_path + "/#{question.id}")
-    # else
-    #   flash[:notice] = question.errors.full_messages
-    #   redirect_to(questions_path + "/#{question.id}")
-    # end
     project = Project.find(params[:id])
     project.update_attributes(project_params)
     if project.save

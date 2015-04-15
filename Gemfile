@@ -38,7 +38,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'spring', '>= 1.3.4'
 end
 
 
@@ -52,3 +52,5 @@ gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
 #fix for javascript errors
 gem 'foundation-rails', github: "zurb/foundation-rails"
+gem 'carrierwave'
+gem 'dotenv-rails', :groups => [:development, :test]

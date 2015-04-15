@@ -1,6 +1,12 @@
-$(document).ready(function(){
+$( document ).ready(function() {
+  //get project ID from url for use with ajax
+  var parser = document.createElement('a');
+  parser.href = window.location.href;
+  var projectID = parser.pathname.replace('/projects/','');
+
   var editor;
-  var quillHTML = '<div id="toolbar" class="small-12 columns">' +
+  var quillHTML = '<div id="editor-wrapper" class="small-12 columns">' +
+  '<div id="toolbar" class="small-12 columns">' +
     '<span class="ql-format-group">' +
       '<select title="Size" class="ql-size small-2 columns">' +
         '<option value="12px" selected>Small</option>' +
@@ -14,45 +20,119 @@ $(document).ready(function(){
       '<span class="ql-list button small">List</span>' +
       '<span class="ql-bullet button small">Bullet</span>' +
     '</span>' +
-    '</div>' +
-      '<div id="editor" class="small-12 columns"></div>' +
-    '</div>' +
+  '</div>' +
+    '<div id="editor" class="small-12 columns"></div>' +
     '<span id="save-quill" class="button small">Save and Close Editor</span>' +
   '</div>';
 
   $("#add-txt-btn").click(function(evt){
     //fix for double call issue
     evt.stopImmediatePropagation();
-
-    $("#project-content").append(quillHTML);
-    initQuill("#editor");
-
-    $("#save-quill").click(function() {
-        alert("it works");
-        //get quill editor contents
-        textHTML = editor.getHTML();
-        //clear content of div to remove editor
-        $("#project-content").empty();
-        $("#project-content").html(textHTML);
-    });
+    initQuill(null);
   });
 
-  // $("#save-quill").click(function() {
-  //   /*
-  //   alert("it works");
-  //   //fix for double call issue
-  //   evt.stopImmediatePropagation()
-  //   //get quill editor contents
-  //   textHTML = editor.getHTML();
-  //   //clear content of div to remove editor
-  //   $("#project-content").html("");
-  //   $("#project-content").html(textHTML);
-  //   */
-  // });
+  function initQuill(divID) {
+    $("#project-content").append(quillHTML);
+    var actionString = "create";
 
-  function initQuill(elementID) {
-    editor = new Quill(elementID,
+    if (divID) {
+      textAreaID = divID.replace("#text-area-","");
+      actionString = "/"+ textAreaID +"/update";
+      //hide div containing content to be edited
+      $("#text-wrapper-"+textAreaID).hide();
+    }
+    //initialize editor on editor div
+    editor = new Quill("#editor",
       { modules : { "toolbar" : { container : "#toolbar" }}}
     );
-  }
+
+    if (divID) {
+      //set contents of editor if text area already exists
+      editor.setHTML($(divID).html());
+    }
+
+    $("#save-quill").click(function() {
+      //get quill editor contents
+      textHTML = editor.getHTML();
+
+      var postPath = projectID+"/textareas/"+actionString;
+      //append project id to query string
+      postPath += "?proj="+projectID;
+
+      $.post(postPath, {content: textHTML}, function(data){
+        if (data["success"] == true) {
+          //clear content of quill div to remove editor
+          $("#editor-wrapper").remove();
+          var contentID = "text-area-" + data["id"];
+          var textAreaHTML = '<div class="text-area small-12 columns" id="text-wrapper-'+data["id"]+'">' +
+              '<div class="small-12 columns" id="'+contentID+'">'+
+                textHTML +
+              '</div>' +
+              '<div class="button tiny edit-text-area-button" area-id="'+contentID+'">' +
+                'edit' +
+              '</div>' +
+              '<div class="button tiny delete-text-area-button" area-id="'+contentID+'">' +
+                'delete' +
+              '</div>' +
+            '</div>';
+
+          if (divID) {
+            //replace old text in hidden div with new text
+            $(divID).html(textHTML);
+            //stop hiding div
+            $("#text-wrapper-"+textAreaID).show();
+          } else {
+            $("#project-content").append(textAreaHTML);
+          }
+          alert(data["message"]);
+        } else {
+          alert(data["message"]);
+        }
+      });
+    });
+  };
+
+  $(".edit-text-area-button").click(function (evt) {
+    //fix for double call issue
+    evt.stopImmediatePropagation();
+    var areaID = $(this).attr("area-id");
+    initQuill("#"+areaID);
+  });
+
+  $(".delete-text-area-button").click(function (evt) {
+    //fix for double call issue
+    evt.stopImmediatePropagation();
+    var htmlID = $(this).attr("area-id")
+    var textAreaID = htmlID.replace("text-area-","");
+    var postPath = projectID+"/textareas/"+textAreaID+"/destroy?proj="+projectID;
+    $.post(postPath, function(data) {
+      if (data["success"] == true) {
+        //destroy div
+        $("#text-wrapper-"+textAreaID).remove();
+        alert("Text Area Successfully Deleted.");
+      } else {
+        alert("Failed to Delete Text Area.");
+      }
+    });
+  });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

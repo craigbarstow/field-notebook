@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   root :to => 'projects#index'
 
   get 'projects/map', to: 'projects#map'
+  post 'projects/:id/textareas/create', to: 'text_areas#create'
+  post 'projects/:id/textareas/:id/update', to: 'text_areas#update'
+  post 'projects/:id/textareas/:id/destroy', to: 'text_areas#destroy'
 
-  resources :projects, only: [:index, :new, :create, :show, :destroy, :edit, :update]
+  resources :projects, only: [:index, :new, :create, :show, :destroy, :edit, :update] do
+    resources :text_areas, only: [:create, :update]
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -14,7 +14,24 @@
     <h4>Date: <%= @project.date %></h4>
     <p>Description: <%= @project.description %></p>
   </div>
-  <div id="project-content" class="small-12 columns"></div>
+  <div id="project-content" class="small-12 columns">
+  <% @project_contents.each do |content_item| %>
+    <% if content_item[:type] == :text_area %>
+      <div class="text-area small-12 columns" id="text-wrapper-<%= content_item[:content][:id] %>">
+        <% content_id = "text-area-#{content_item[:content][:id]}" %>
+        <div class="small-12 columns" id="<%= content_id %>">
+          <%= content_item[:content][:content].html_safe %>
+        </div>
+        <div class="button tiny edit-text-area-button" area-id="<%= content_id %>">
+          edit
+        </div>
+        <div class="button tiny delete-text-area-button" area-id="<%= content_id %>">
+          delete
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  </div>
   <div class="small-12 columns" id="add-content-bar">
     <div class="small-4 columns button large" id="add-txt-btn">Add Text</div>
     <div class="small-4 columns button large" id="add-img-btn">Add an Image</div>

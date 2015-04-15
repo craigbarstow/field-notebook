@@ -1,6 +1,3 @@
-//hide all edit control bars
-// $(".edit-controls").hide();
-
 $( document ).ready(function() {
   //set event handlers for relevant elements
   resetEventHandlers();
@@ -124,15 +121,6 @@ $( document ).ready(function() {
         }
       });
     });
-
-    $(".text-area").hover(
-      function() {
-        $(this).find(".edit-controls").slideDown(300);
-      },
-      function() {
-        $(this).find(".edit-controls").slideUp(300);
-      }
-    );
   }
 });
 

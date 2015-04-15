@@ -68,14 +68,14 @@ $( document ).ready(function() {
               '<div class="small-12 columns" id="'+contentID+'">'+
                 textHTML +
               '</div>' +
-              '<div class="button tiny edit-text-area-button" areaID="'+contentID+'">' +
+              '<div class="button tiny edit-text-area-button" area-id="'+contentID+'">' +
                 'edit' +
               '</div>' +
-              '<div class="button tiny delete-text-area-button" areaID="'+contentID+'">' +
+              '<div class="button tiny delete-text-area-button" area-id="'+contentID+'">' +
                 'delete' +
               '</div>' +
             '</div>';
-          console.log(textAreaHTML)
+
           if (divID) {
             //replace old text in hidden div with new text
             $(divID).html(textHTML);
@@ -95,15 +95,14 @@ $( document ).ready(function() {
   $(".edit-text-area-button").click(function (evt) {
     //fix for double call issue
     evt.stopImmediatePropagation();
-    var areaID = $(this).attr("areaID");
+    var areaID = $(this).attr("area-id");
     initQuill("#"+areaID);
   });
 
   $(".delete-text-area-button").click(function (evt) {
     //fix for double call issue
     evt.stopImmediatePropagation();
-
-    var htmlID = $(this).attr("areaID")
+    var htmlID = $(this).attr("area-id")
     var textAreaID = htmlID.replace("text-area-","");
     var postPath = projectID+"/textareas/"+textAreaID+"/destroy?proj="+projectID;
     $.post(postPath, function(data) {

@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   post 'projects/:id/textareas/:id/destroy', to: 'text_areas#destroy'
 
   resources :projects, only: [:index, :new, :create, :show, :destroy, :edit, :update] do
-    resources :text_areas, only: [:create, :update]
+    resources :text_areas, only: [:create, :update, :destroy]
+    resources :photos, only: [:new, :create, :destroy]
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

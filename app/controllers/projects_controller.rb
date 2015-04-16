@@ -35,6 +35,10 @@ class ProjectsController < ApplicationController
     @text_areas.each do |text_area|
       @project_contents << {type: :text_area, content: text_area}
     end
+    @photos = Photo.where(project_id: @project.id)
+    @photos.each do |photo|
+      @project_contents << {type: :photo, image: photo }
+    end
     @project_contents
   end
 

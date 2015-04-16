@@ -53,4 +53,5 @@ gem 'devise'
 #fix for javascript errors
 gem 'foundation-rails', github: "zurb/foundation-rails"
 gem 'carrierwave'
+gem "fog"
 gem 'dotenv-rails', :groups => [:development, :test]

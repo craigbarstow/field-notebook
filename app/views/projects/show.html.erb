@@ -1,11 +1,11 @@
 <div id="show-link-wrapper" class="row">
-  <div class="small-4 column">
-    <%= link_to "< Home", projects_path, class: 'button large' %>
+  <div class="small-4 column nav-btn-wrapper">
+    <%= link_to "< Home", projects_path, class: 'button large nav-btn' %>
   </div>
   <div class="small-4 column">
-    <%= link_to "Edit Basic Info", edit_project_path(@project.id), class: 'button large' %>
+    <%= link_to "Edit Basic Info", edit_project_path(@project.id), class: 'button large nav-btn' %>
   </div>
-  <div class="button large small-4 column" id="edit-view-mode-btn">Edit Mode</div>
+  <div class="button large small-4 column nav-btn-wrapper" id="edit-view-mode-btn">Edit Mode</div>
 </div>
 <div class="row show-project-wrapper">
   <div class="small-10 columns">
@@ -24,20 +24,33 @@
           <%= content_item[:content][:content].html_safe %>
         </div>
         <div class="edit-controls small-12 columns">
-          <div class="button tiny edit-text-area-button" area-id="<%= content_id %>">
+          <div class="button tiny edit-text-area-button">
             edit
           </div>
-          <div class="button tiny delete-text-area-button" area-id="<%= content_id %>">
+          <div class="button tiny delete-text-area-button">
             delete
           </div>
         </div>
+      </div>
+    <% elsif content_item[:type] == :photo %>
+      <div class="image-container small-12 columns">
+        <%= image_tag(content_item[:image].image) %>
+        <p><%= content_item[:image].caption %></p>
+      </div>
+      <div class="edit-controls small-12 columns">
+        <div class="button tiny edit-image" area-id="<%= content_id %>">
+          edit
+        </div>
+        <%= link_to "Delete Photo", project_photo_path(@project.id, content_item[:image]),
+          method: :delete, class: "button tiny delete-image-button" %>
       </div>
     <% end %>
   <% end %>
   </div>
   <div class="small-12 columns" id="add-content-bar">
     <div class="small-4 columns button large" id="add-txt-btn">Add Text</div>
-    <div class="small-4 columns button large" id="add-img-btn">Add an Image</div>
+    <%= link_to "Add Photo", new_project_photo_path(@project), class: "small-4 columns button large" %>
+    <!--div class="small-4 columns button large" id="add-img-btn">Add an Image</div-->
     <div class="small-4 columns button large" id="add-map-btn">Add a Map</div>
   </div>
 </div>

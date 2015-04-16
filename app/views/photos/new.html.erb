@@ -1,0 +1,10 @@
+<div class="small-12 columns" id="img-upload-wrapper">
+  <%= form_for [:project, @photo], multiple: true do |f| %>
+    <%= f.file_field :image %>
+
+    <%= f.label :caption %>
+    <%= f.text_area :caption %>
+
+    <%= f.submit "Add Photo" %>
+  <% end %>
+<div>

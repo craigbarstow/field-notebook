@@ -35,8 +35,6 @@ class ProjectsController < ApplicationController
     @text_areas.each do |text_area|
       @project_contents << {type: :text_area, content: text_area}
     end
-    #create new photo for use with uploader
-    @photo = Photo.new
     @project_contents
   end
 

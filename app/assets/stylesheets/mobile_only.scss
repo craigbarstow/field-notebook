@@ -8,8 +8,24 @@
   #user_email {
     height: 10em;
   }
-
-  .top-bar {
-    background-color: red;
+  /***************************
+  General
+  ***************************/
+  #background-img {
+    display: none;
   }
+
+  /***************************
+  Projects Show Page
+  ***************************/
+  #show-link-wrapper {
+    margin: 0;
+    padding: none;
+  }
+
+  .nav-btn-wrapper {
+    width: 33%;
+    margin: 0 auto;
+  }
+
 }

@@ -1,11 +1,11 @@
 <div id="show-link-wrapper" class="row">
-  <div class="small-4 column">
-    <%= link_to "< Home", projects_path, class: 'button large' %>
+  <div class="small-4 column nav-btn-wrapper">
+    <%= link_to "< Home", projects_path, class: 'button large nav-btn' %>
   </div>
   <div class="small-4 column">
-    <%= link_to "Edit Basic Info", edit_project_path(@project.id), class: 'button large' %>
+    <%= link_to "Edit Basic Info", edit_project_path(@project.id), class: 'button large nav-btn' %>
   </div>
-  <div class="button large small-4 column" id="edit-view-mode-btn">Edit Mode</div>
+  <div class="button large small-4 column nav-btn-wrapper" id="edit-view-mode-btn">Edit Mode</div>
 </div>
 <div class="row show-project-wrapper">
   <div class="small-10 columns">
@@ -37,17 +37,8 @@
   </div>
   <div class="small-12 columns" id="add-content-bar">
     <div class="small-4 columns button large" id="add-txt-btn">Add Text</div>
-    <div class="small-4 columns button large" id="add-img-btn">Add an Image</div>
+    <%= link_to "Add Photo", new_project_photo_path(@project), class: "small-4 columns button large" %>
+    <!--div class="small-4 columns button large" id="add-img-btn">Add an Image</div-->
     <div class="small-4 columns button large" id="add-map-btn">Add a Map</div>
   </div>
-  <div class="small-12 columns" id="img-upload-wrapper">
-    <%= form_for [@project, @photo] do |f| %>
-      <%= f.file_field :image %>
-
-      <%= f.label :caption %>
-      <%= f.text_area :caption %>
-
-      <%= f.submit "Add Photo" %>
-    <% end %>
-  <div>
 </div>

@@ -24,10 +24,10 @@
           <%= content_item[:content][:content].html_safe %>
         </div>
         <div class="edit-controls small-12 columns">
-          <div class="button tiny edit-text-area-button">
+          <div class="button tiny edit-text-area-button" area-id="<%= content_id %>">
             edit
           </div>
-          <div class="button tiny delete-text-area-button">
+          <div class="button tiny delete-text-area-button" area-id="<%= content_id %>">
             delete
           </div>
         </div>

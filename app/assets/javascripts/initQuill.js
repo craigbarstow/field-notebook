@@ -34,7 +34,13 @@ $( document ).ready(function() {
   });
 
   function initQuill(divID) {
-    $("#project-content").append(quillHTML);
+    if (divID) {
+      $(divID.replace("area","wrapper")).before(quillHTML);
+    }
+    else {
+      $("#project-content").append(quillHTML);
+    }
+
     var actionString = "create";
 
     if (divID) {

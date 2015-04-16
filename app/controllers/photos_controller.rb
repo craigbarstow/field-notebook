@@ -4,7 +4,6 @@ class PhotosController < ApplicationController
   end
 
   def create
-
     photo_info = get_photo_params
     @photo = Photo.new
     #@photo.image = photo_info[:image]
@@ -21,7 +20,9 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-
+    #FIXME, make sure files are deleted from s3
+    Photo.destroy(params[:id])
+    redirect_to project_path(params[:project_id]);
   end
 
   private

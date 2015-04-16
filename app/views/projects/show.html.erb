@@ -24,13 +24,25 @@
           <%= content_item[:content][:content].html_safe %>
         </div>
         <div class="edit-controls small-12 columns">
-          <div class="button tiny edit-text-area-button" area-id="<%= content_id %>">
+          <div class="button tiny edit-text-area-button">
             edit
           </div>
-          <div class="button tiny delete-text-area-button" area-id="<%= content_id %>">
+          <div class="button tiny delete-text-area-button">
             delete
           </div>
         </div>
+      </div>
+    <% elsif content_item[:type] == :photo %>
+      <div class="image-container small-12 columns">
+        <%= image_tag(content_item[:image].image) %>
+        <p><%= content_item[:image].caption %></p>
+      </div>
+      <div class="edit-controls small-12 columns">
+        <div class="button tiny edit-image" area-id="<%= content_id %>">
+          edit
+        </div>
+        <%= link_to "Delete Photo", project_photo_path(@project.id, content_item[:image]),
+          method: :delete, class: "button tiny delete-image-button" %>
       </div>
     <% end %>
   <% end %>

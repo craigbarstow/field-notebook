@@ -101,8 +101,9 @@ Projects Show
   margin-top: 2rem;
 }
 
-.show-project-wrapper {
+#show-project-wrapper {
   background-color: $white;
+  margin-bottom: 2rem;
 }
 
 #editor {
@@ -129,21 +130,5 @@ Projects Show
 .delete-text-area-button {
   margin-left: 1em;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**/

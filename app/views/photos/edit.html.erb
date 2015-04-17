@@ -1,0 +1,11 @@
+<div class="small-12 columns" id="edit-img-wrapper">
+  <%= form_for [@project, @photo] do |f| %>
+    <%= f.label :title %>
+    <%= f.text_area :title %>
+
+    <%= f.label :caption %>
+    <%= f.text_area :caption %>
+
+    <%= f.submit "Update Information" %>
+  <% end %>
+<div>

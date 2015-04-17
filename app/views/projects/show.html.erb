@@ -2,18 +2,22 @@
   <div class="small-4 column nav-btn-wrapper">
     <%= link_to "< Home", projects_path, class: 'button large nav-btn' %>
   </div>
-  <div class="small-4 column">
-    <%= link_to "Edit Basic Info", edit_project_path(@project.id), class: 'button large nav-btn' %>
-  </div>
   <div class="button large small-4 column nav-btn-wrapper" id="edit-view-mode-btn">Edit Mode</div>
 </div>
-<div class="row show-project-wrapper">
+<div class="row" id="show-project-wrapper">
   <div class="small-10 columns">
     <h2><%= @project.title %><h2>
     <h4>Location: <%= @project.location %></h4>
     <h4>Coordinates: <%= @project.coordinates %></h4>
     <h4>Date: <%= @project.date %></h4>
     <p>Description: <%= @project.description %></p>
+  </div>
+  <div class="small-12 columns" id="add-content-bar">
+    <%= link_to "Edit Basic Info", edit_project_path(@project.id), class: 'small-3 columns button large' %>
+    <div class="small-3 columns button large" id="add-txt-btn">Add Text</div>
+    <%= link_to "Add Photo", new_project_photo_path(@project), class: "small-3 columns button large" %>
+    <!--div class="small-4 columns button large" id="add-img-btn">Add an Image</div-->
+    <div class="small-3 columns button large" id="add-map-btn">Add a Map</div>
   </div>
   <div id="project-content" class="small-12 columns">
   <% @project_contents.each do |content_item| %>
@@ -34,23 +38,20 @@
       </div>
     <% elsif content_item[:type] == :photo %>
       <div class="image-container small-12 columns">
+        <h3><%= content_item[:image].title %></h3>
         <%= image_tag(content_item[:image].image) %>
         <p><%= content_item[:image].caption %></p>
       </div>
       <div class="edit-controls small-12 columns">
-        <div class="button tiny edit-image" area-id="<%= content_id %>">
+        <!-- <div class="button tiny edit-image" area-id="<%= content_id %>">
           edit
-        </div>
+        </div> -->
+        <%= link_to "Edit Photo", edit_project_photo_path(@project.id, content_item[:image]),
+          class: "button tiny edit-image-button" %>
         <%= link_to "Delete Photo", project_photo_path(@project.id, content_item[:image]),
           method: :delete, class: "button tiny delete-image-button" %>
       </div>
     <% end %>
   <% end %>
-  </div>
-  <div class="small-12 columns" id="add-content-bar">
-    <div class="small-4 columns button large" id="add-txt-btn">Add Text</div>
-    <%= link_to "Add Photo", new_project_photo_path(@project), class: "small-4 columns button large" %>
-    <!--div class="small-4 columns button large" id="add-img-btn">Add an Image</div-->
-    <div class="small-4 columns button large" id="add-map-btn">Add a Map</div>
   </div>
 </div>

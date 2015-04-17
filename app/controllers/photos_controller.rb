@@ -6,9 +6,9 @@ class PhotosController < ApplicationController
   def create
     photo_info = get_photo_params
     @photo = Photo.new
-    #@photo.image = photo_info[:image]
     @photo.image = photo_info[:image]
     @photo.caption = photo_info[:caption]
+    @photo.title = photo_info[:title]
     #FIXME validate that project belongs to current user
     @photo.project_id = params[:project_id]
 
@@ -17,6 +17,23 @@ class PhotosController < ApplicationController
     #uploader.retrieve_from_store!('my_file.png')
 
     redirect_to project_path(Project.find(params[:project_id]))
+  end
+
+  def edit
+    @project = Project.find(params[:project_id])
+    @photo = Photo.find(params[:id])
+  end
+
+  def update
+    photo = Photo.find(params[:id])
+    photo.update_attributes(get_photo_params)
+    if photo.save
+      flash[:notice] = ["Project Successfully Updated"]
+      redirect_to(project_path(Project.find([params[:project_id]])))
+    else
+      flash[:notice] = @question.errors.full_messages
+      redirect_to(project_path(project.find([params[:project_id]])))
+    end
   end
 
   def destroy
@@ -28,6 +45,6 @@ class PhotosController < ApplicationController
   private
 
   def get_photo_params
-    params.require(:photo).permit(:image, :caption)
+    params.require(:photo).permit(:title, :image, :caption)
   end
 end

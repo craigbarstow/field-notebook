@@ -59,6 +59,11 @@ $( document ).ready(function() {
       editor.setHTML($(divID).html());
     }
 
+    //scroll to newly created editor
+    $('html, body').animate({
+      scrollTop: $("#editor-wrapper").offset().top - 10},
+      300);
+
     $("#save-quill").click(function() {
       //get quill editor contents
       textHTML = editor.getHTML();

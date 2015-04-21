@@ -1,10 +1,25 @@
-<div class="medium-3 columns index-search-wrapper">
-  <p>Search Stuff goes here</p>
+<div class="small-12 medium-3 columns index-search-wrapper">
+  <!-- Start New Stuff -->
+  <h3>Search:</h3>
+  <%= form_tag(search_path, method: "get") do %>
+    <%= text_field_tag(:search) %>
+    <%= submit_tag("Search", class: "button tiny") %>
+  <% end %>
+  <h3>Sort By:</h3>
+  <%= link_to "Title", sort_path(:title), class: "button small radius" %>
+  <%= link_to "Newest", sort_path(:newest), class: "button small radius" %>
+  <%= link_to "Recently Modified", sort_path(:recently_modified), class: "button small radius" %>
+  <!-- end new stuff -->
 </div>
 <div class="small-12 medium-9 columns">
+<% if @search %>
+  <div>
+    <h1>Search Results</h1>
+  </div>
+<% end %>
 <% if @projects.length == 0 %>
   <div>
-    <h1>You Have No Projects</h1>
+    <h1>No Projects Found</h1>
   </div>
 <% else %>
   <% @projects.each do |project| %>

@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.where(user_id: current_user.id)
+    @projects = Project.where(user_id: current_user.id).page(params[:page]).per(5)
   end
 
   def new
@@ -72,7 +72,7 @@ class ProjectsController < ApplicationController
         if project.coordinates
           project_hash = {
             path: project_path(project),
-            title: project.title,
+            title: project.title.titleize,
             date: project.date,
             coordinates: project.coordinates
           }

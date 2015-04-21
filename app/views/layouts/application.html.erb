@@ -43,9 +43,8 @@
     </div>
   </div>
 </div>
-
-  <%= javascript_include_tag 'application' %>
-  <%= javascript_include_tag 'application', "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js" %>
+  <%= javascript_include_tag 'application', media: 'all' %>
+  <%= javascript_include_tag "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js" %>
   <%= yield :extra_footer %>
 </body>
 </html>

@@ -95,6 +95,15 @@ Projects Index
   background-color: $unhover-grey;
   border: 1px solid $black;
 }
+
+#choose-coords-map-wrapper {
+  display: none;
+}
+
+#choose-coords-map {
+  width: 100%;
+  height: 30em;
+}
 /*****************************************
 Projects Show
 *****************************************/

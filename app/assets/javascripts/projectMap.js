@@ -13,7 +13,6 @@ $(document).ready(function(){
     evt.stopImmediatePropagation();
   });
 
-
   function addProjectMap(elementID) {
     var esriWorldTopo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/re' +
       'st/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
@@ -25,6 +24,7 @@ $(document).ready(function(){
       center: [40.749960, -97.209603],
       zoom: 4
     });
+
     esriWorldTopo.addTo(map);
     map.invalidateSize();
   }

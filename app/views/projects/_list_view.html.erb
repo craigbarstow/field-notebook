@@ -22,6 +22,7 @@
     <h1>No Projects Found</h1>
   </div>
 <% else %>
+  <%# binding.pry %>
   <% @projects.each do |project| %>
     <%= link_to project do %>
       <div class="project-wrapper">

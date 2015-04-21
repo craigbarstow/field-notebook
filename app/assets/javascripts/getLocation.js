@@ -9,3 +9,38 @@ function getLocation(tagId) {
     $(tagId).val("Geolocation is not supported.");
   }
 }
+
+$( "#show-coords-map-btn" ).click(function() {
+  $("#new-project-wrapper").hide();
+  $("#choose-coords-map-wrapper").show();
+
+  $("#cancel-coord-btn").click(function() {
+    $("#choose-coords-map-wrapper").hide();
+    $("#new-project-wrapper").show();
+  })
+})
+
+$( document ).ready(function() {
+  if( document.getElementById('choose-coords-map') != null) {
+
+    var esriWorldTopo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/re' +
+      'st/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+      {
+       attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+    });
+
+    var coordsMap = L.map($("#choose-coords-map"), {
+      center: [40.749960, -97.209603],
+      zoom: 4
+    });
+
+    esriWorldTopo.addTo(coordsMap);
+    coordsMap.invalidateSize();
+
+    coordsMap.on('click', function(e) {
+      $("#project_coordinates").val(e.latlng.lat + "," + e.latlng.lng)
+      $("#choose-coords-map-wrapper").hide();
+      $("#new-project-wrapper").show();
+    });
+  }
+});

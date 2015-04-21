@@ -1,7 +1,7 @@
 // http://leaflet-extras.github.io/leaflet-providers/preview/
 $(document).ready(function() {
   //only execute if there is a div to put map in
-  if( document.getElementById('map-canvas') != null ) {
+  if( document.getElementById('map-canvas') != null) {
     var esriWorldTopo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/re' +
       'st/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
       {
@@ -48,6 +48,7 @@ $(document).ready(function() {
         map.setZoom(12);
       }
     });
+
 
     //fix to load all map tiles on index page
     $("#map-tab").click(function() {

@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="column">
+  <div class="column" id="new-project-wrapper">
     <h1>Add a Project</h1>
     <%= form_for Project.new do |f| %>
       <table>
@@ -18,8 +18,10 @@
         <tr>
           <td><%= f.label :coordinates %></td>
           <td><%= f.text_field :coordinates %></td>
-          <td><a href="#" class="button radius" onclick="getLocation('#project_coordinates')">Get Coordinates</a></td>
         </tr>
+        <tr>
+          <td><a href="#" class="button radius" onclick="getLocation('#project_coordinates')">Get My Coordinates</a></td>
+          <td><div class="button radius" id="show-coords-map-btn">Select Location From Map</div></td>
         <tr>
           <td><%= f.label :description %></td>
           <td><%= f.text_area :description %></td>
@@ -27,5 +29,10 @@
         <tr><td><%= f.submit "Add Project", class: 'button radius' %></td></tr>
       </table>
     <% end %>
+  </div>
+  <div class="column" id="choose-coords-map-wrapper">
+    <div class="button radius" id="cancel-coord-btn">Cancel</div>
+    <h2>Click on the Map to Select Coordinates</h2>
+    <div id="choose-coords-map"></div>
   </div>
 </div>

@@ -1,6 +1,26 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.where(user_id: current_user.id)
+    #FIXME, the custom paths break the index map
+    if params[:search]
+      @projects = Project.where(user_id: current_user.id).where(
+      "to_tsvector(title) @@ plainto_tsquery(?)", [params[:search]]
+      ).page(params[:page]).per(5)
+      @search = true
+    elsif params[:sort]
+      #FIXME, these dont seem to work
+      if params[:sort] == :title
+        @projects = Project.where(user_id: current_user.id).order(:title).page(params[:page]).per(5)
+      elsif params[:sort] == :newest
+        @projects = Project.where(user_id: current_user.id).order(:created_at).page(params[:page]).per(5)
+      elsif params[:sort] == :recently_modified
+        @projects = Project.where(user_id: current_user.id).order(:updated_at).page(params[:page]).per(5)
+      else
+        #if sort param not in approved list, just return all projects
+        @projects = Project.where(user_id: current_user.id).page(params[:page]).per(5)
+      end
+    else
+      @projects = Project.where(user_id: current_user.id).page(params[:page]).per(5)
+    end
   end
 
   def new
@@ -12,10 +32,10 @@ class ProjectsController < ApplicationController
 
     @new_project = Project.create(
       user_id: current_user.id,
-      title: proj[:title],
+      title: proj[:title].titleize,
       date: DateCreator.create_datetime(proj["date(3i)"],
         proj["date(2i)"], proj["date(1i)"]),
-      location: proj[:location],
+      location: proj[:location].titleize,
       coordinates: proj[:coordinates],
       description: proj[:description]
     )
@@ -72,7 +92,7 @@ class ProjectsController < ApplicationController
         if project.coordinates
           project_hash = {
             path: project_path(project),
-            title: project.title,
+            title: project.title.titleize,
             date: project.date,
             coordinates: project.coordinates
           }

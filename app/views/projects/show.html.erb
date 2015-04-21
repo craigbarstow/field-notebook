@@ -6,7 +6,7 @@
 </div>
 <div class="row" id="show-project-wrapper">
   <div class="small-10 columns">
-    <h2><%= @project.title %><h2>
+    <h2><%= @project.title.titleize %><h2>
     <h4>Location: <%= @project.location %></h4>
     <h4>Coordinates: <%= @project.coordinates %></h4>
     <h4>Date: <%= @project.date %></h4>
@@ -43,9 +43,6 @@
         <p><%= content_item[:image].caption %></p>
       </div>
       <div class="edit-controls small-12 columns">
-        <!-- <div class="button tiny edit-image" area-id="<%= content_id %>">
-          edit
-        </div> -->
         <%= link_to "Edit Photo", edit_project_photo_path(@project.id, content_item[:image]),
           class: "button tiny edit-image-button" %>
         <%= link_to "Delete Photo", project_photo_path(@project.id, content_item[:image]),

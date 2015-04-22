@@ -7,8 +7,6 @@ $(document).ready(function(){
       'id="'+mapID+'"></div>');
     addProjectMap(mapID);
 
-    // initQuill("#editor");
-
     //stop double fire issue
     evt.stopImmediatePropagation();
   });

@@ -31,6 +31,7 @@ $(document).ready(function() {
     $.get( "projects/map?mapid=index", function( data ) {
       var coordsArray = [];
       for (i=0; i<data.length; i++) {
+        //FIXME make sure coordinates exist
         var coordinatesArray =  data[i].coordinates.split(",");
         coordsArray.push(coordinatesArray);
         var marker = L.marker([coordinatesArray[0],coordinatesArray[1]]);

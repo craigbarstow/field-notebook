@@ -29,14 +29,20 @@ class ProjectsController < ApplicationController
 
   def create
     proj = project_params
-
+    coordinates = proj[:coordinates]
+    #FIXME, validate numbers
+    if coordinates == "Retrieving Coordinates...." ||
+      coordinates == "Geolocation is not supported." ||
+      !coordinates.include?(",")
+      coordinates = nil
+    end
     @new_project = Project.create(
       user_id: current_user.id,
       title: proj[:title].titleize,
       date: DateCreator.create_datetime(proj["date(3i)"],
         proj["date(2i)"], proj["date(1i)"]),
       location: proj[:location].titleize,
-      coordinates: proj[:coordinates],
+      coordinates: coordinates,
       description: proj[:description]
     )
     if @new_project.save

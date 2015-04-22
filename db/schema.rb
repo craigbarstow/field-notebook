@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417144911) do
+ActiveRecord::Schema.define(version: 20150422163102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "map_points", force: :cascade do |t|
+    t.integer "map_id",    null: false
+    t.decimal "latitude",  null: false
+    t.decimal "longitude", null: false
+  end
+
+  create_table "maps", force: :cascade do |t|
+    t.integer  "project_id", null: false
+    t.text     "caption"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "photos", force: :cascade do |t|
     t.integer  "project_id", null: false

@@ -5,18 +5,22 @@ class PhotosController < ApplicationController
 
   def create
     photo_info = get_photo_params
-    @photo = Photo.new
-    @photo.image = photo_info[:image]
-    @photo.caption = photo_info[:caption]
-    @photo.title = photo_info[:title]
-    #FIXME validate that project belongs to current user
-    @photo.project_id = params[:project_id]
-
-    @photo.save
-
-    #uploader.retrieve_from_store!('my_file.png')
-
-    redirect_to project_path(Project.find(params[:project_id]))
+    # @photo = Photo.new
+    if photo_info[:image]
+      @photo = Photo.create(project_id: params[:project_id],
+        image: photo_info[:image], caption: photo_info[:caption],
+        title: photo_info[:title])
+      if @photo.save
+        flash[:notice] = ["Photo Added"]
+        redirect_to(project_path(Project.find([params[:project_id]])))
+      else
+        flash[:notice] = @question.errors.full_messages
+        redirect_to(project_path(Project.find([params[:project_id]])))
+      end
+    else
+      flash[:notice] = ["Error: No Photo Selected"]
+      redirect_to(project_path(Project.find([params[:project_id]])))
+    end
   end
 
   def edit

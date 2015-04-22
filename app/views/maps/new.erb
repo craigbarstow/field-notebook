@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="small-12 column" id="new-map-wrapper">
+    <h1>Create a New Map</h1>
+    <div id="new-map-canvas"></div>
+    <%= form_for [:project, @map] do |f| %>
+      <%= f.label :title %>
+      <%= f.text_area :title %>
+
+      <%= f.label :caption %>
+      <%= f.text_area :caption %>
+
+      <%= f.submit "Add Map" %>
+    <% end %>
+  </div>
+</div>

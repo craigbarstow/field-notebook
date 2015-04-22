@@ -16,8 +16,8 @@
     <%= link_to "Edit Basic Info", edit_project_path(@project.id), class: 'small-3 columns button large' %>
     <div class="small-3 columns button large" id="add-txt-btn">Add Text</div>
     <%= link_to "Add Photo", new_project_photo_path(@project), class: "small-3 columns button large" %>
-    <!--div class="small-4 columns button large" id="add-img-btn">Add an Image</div-->
-    <div class="small-3 columns button large" id="add-map-btn">Add a Map</div>
+    <!-- <div class="small-3 columns button large" id="add-map-btn">Add a Map</div> -->
+    <%= link_to "Add Map", new_project_map_path(@project), class: "small-3 columns button large" %>
   </div>
   <div id="project-content" class="small-12 columns">
   <% @project_contents.each do |content_item| %>

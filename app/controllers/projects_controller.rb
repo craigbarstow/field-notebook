@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
     elsif params[:sort]
       #FIXME, these dont seem to work
       if params[:sort] == :title
-        @projects = Project.where(user_id: current_user.id).order(:title)#.page(params[:page]).per(5)
+        @projects = Project.where(user_id: current_user.id).order(:title).page(params[:page]).per(5)
       elsif params[:sort] == :newest
         @projects = Project.where(user_id: current_user.id).order(:created_at).page(params[:page]).per(5)
       elsif params[:sort] == :recently_modified
@@ -74,6 +74,7 @@ class ProjectsController < ApplicationController
 
   def update
     project = Project.find(params[:id])
+    #FIXME validate coordinates in similar way as in create
     project.update_attributes(project_params)
     if project.save
       flash[:notice] = ["Project Successfully Updated"]

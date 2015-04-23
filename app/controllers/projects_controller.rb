@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
     elsif params[:sort]
       #FIXME, these dont seem to work
       if params[:sort] == :title
-        @projects = Project.where(user_id: current_user.id).order(:title)#.page(params[:page]).per(5)
+        @projects = Project.where(user_id: current_user.id).order(:title).page(params[:page]).per(5)
       elsif params[:sort] == :newest
         @projects = Project.where(user_id: current_user.id).order(:created_at).page(params[:page]).per(5)
       elsif params[:sort] == :recently_modified
@@ -29,14 +29,20 @@ class ProjectsController < ApplicationController
 
   def create
     proj = project_params
-
+    coordinates = proj[:coordinates]
+    #FIXME, validate numbers
+    if coordinates == "Retrieving Coordinates...." ||
+      coordinates == "Geolocation is not supported." ||
+      !coordinates.include?(",")
+      coordinates = nil
+    end
     @new_project = Project.create(
       user_id: current_user.id,
       title: proj[:title].titleize,
       date: DateCreator.create_datetime(proj["date(3i)"],
         proj["date(2i)"], proj["date(1i)"]),
       location: proj[:location].titleize,
-      coordinates: proj[:coordinates],
+      coordinates: coordinates,
       description: proj[:description]
     )
     if @new_project.save
@@ -51,14 +57,23 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @project_contents = []
+    #gather all text areas for project
     @text_areas = TextArea.where(project_id: @project.id)
     @text_areas.each do |text_area|
       @project_contents << {type: :text_area, content: text_area}
     end
+    #gather all photos for project
     @photos = Photo.where(project_id: @project.id)
     @photos.each do |photo|
       @project_contents << {type: :photo, image: photo }
     end
+    #gather all maps for project
+    @maps = Map.where(project_id: @project.id)
+    #pass map id, title, and caption, retrieve rest of info with ajax
+    @maps.each do |map|
+      @project_contents << {type: :map, map: map}
+    end
+
     @project_contents
   end
 
@@ -68,6 +83,7 @@ class ProjectsController < ApplicationController
 
   def update
     project = Project.find(params[:id])
+    #FIXME validate coordinates in similar way as in create
     project.update_attributes(project_params)
     if project.save
       flash[:notice] = ["Project Successfully Updated"]

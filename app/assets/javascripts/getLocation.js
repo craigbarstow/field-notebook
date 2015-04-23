@@ -23,6 +23,7 @@ $( document ).ready(function() {
     coordsMap = L.map(document.getElementById('choose-coords-map'))
     coordsMap.setView([40.749960, -97.209603], 4);
     esriWorldTopo.addTo(coordsMap);
+    coordsMap.invalidateSize();
 
     coordsMap.on('click', function(e) {
       $("#project_coordinates").val(e.latlng.lat + "," + e.latlng.lng);

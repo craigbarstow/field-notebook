@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   resources :projects, only: [:index, :new, :create, :show, :destroy, :edit, :update] do
     resources :text_areas, only: [:create, :update, :destroy]
     resources :photos, only: [:new, :create, :edit, :update, :destroy]
-    resources :maps, only: [:new, :create]
+    resources :maps, only: [:new, :create, :destroy]
   end
 end

@@ -30,6 +30,12 @@ class MapsController < ApplicationController
     end
   end
 
+  def destroy
+    Map.destroy(params[:id])
+    MapPoint.destroy_all(map_id: params[:id])
+    redirect_to project_path(Project.find([params[:project_id]]))
+  end
+
   def return_content
     map_id = params[:id]
     #FIXME add exception handling in case map cant be found

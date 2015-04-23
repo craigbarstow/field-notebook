@@ -54,6 +54,10 @@
         </div>
         <p><%= content_item[:map].caption %></p>
       </div>
+      <div class="edit-controls small-12 columns">
+        <%= link_to "Delete Map", project_map_path(@project.id, content_item[:map]),
+          method: :delete, class: "button tiny delete-map-button" %>
+      </div>
     <% end %>
   <% end %>
   </div>

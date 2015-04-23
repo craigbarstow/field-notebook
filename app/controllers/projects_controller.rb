@@ -65,16 +65,15 @@ class ProjectsController < ApplicationController
     #gather all photos for project
     @photos = Photo.where(project_id: @project.id)
     @photos.each do |photo|
-      @project_contents << {type: :photo, image: photo }
+      @project_contents << {type: :photo, content: photo }
     end
     #gather all maps for project
     @maps = Map.where(project_id: @project.id)
     #pass map id, title, and caption, retrieve rest of info with ajax
     @maps.each do |map|
-      @project_contents << {type: :map, map: map}
+      @project_contents << {type: :map, content: map}
     end
-
-    @project_contents
+    @project_contents = @project_contents.sort_by { |item| item[:content].created_at }
   end
 
   def edit

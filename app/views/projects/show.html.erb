@@ -37,25 +37,25 @@
       </div>
     <% elsif content_item[:type] == :photo %>
       <div class="image-container small-12 columns">
-        <h3><%= content_item[:image].title %></h3>
-        <%= image_tag(content_item[:image].image) %>
-        <p><%= content_item[:image].caption %></p>
+        <h3><%= content_item[:content].title %></h3>
+        <%= image_tag(content_item[:content].image) %>
+        <p><%= content_item[:content].caption %></p>
       </div>
       <div class="edit-controls small-12 columns">
-        <%= link_to "Edit Photo", edit_project_photo_path(@project.id, content_item[:image]),
+        <%= link_to "Edit Photo", edit_project_photo_path(@project.id, content_item[:content]),
           class: "button tiny edit-image-button" %>
-        <%= link_to "Delete Photo", project_photo_path(@project.id, content_item[:image]),
+        <%= link_to "Delete Photo", project_photo_path(@project.id, content_item[:content]),
           method: :delete, class: "button tiny delete-image-button" %>
       </div>
     <% elsif content_item[:type] == :map %>
       <div class="project-map-container small-12 columns">
-        <h3><%= content_item[:map].title %></h3>
-        <div class="small-12 column project-map" id="map-<%= content_item[:map].id %>">
+        <h3><%= content_item[:content].title %></h3>
+        <div class="small-12 column project-map" id="map-<%= content_item[:content].id %>">
         </div>
-        <p><%= content_item[:map].caption %></p>
+        <p><%= content_item[:content].caption %></p>
       </div>
       <div class="edit-controls small-12 columns">
-        <%= link_to "Delete Map", project_map_path(@project.id, content_item[:map]),
+        <%= link_to "Delete Map", project_map_path(@project.id, content_item[:content]),
           method: :delete, class: "button tiny delete-map-button" %>
       </div>
     <% end %>

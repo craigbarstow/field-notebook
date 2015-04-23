@@ -28,16 +28,22 @@ $( document ).ready(function() {
       var popupHTML = "<div class='button radius delete-pnt-btn'>Delete</div>";
       marker.bindPopup(popupHTML);
 
-      resetDeleteHandlers();
-    });
+      //add event handler to delete points if they've been clicked
+      marker.on("click", function() {
+        map.removeLayer(marker);
 
-    function resetDeleteHandlers() {
-      //FIXME this doesnt work
-      $(".delete-pnt-btn").click(function(){
-        alert("delete button clicked");
-        console.log($(this));
+        markerLocation = [marker.getLatLng().lat, marker.getLatLng().lng];
+        //ugly way of checking for presence of array in array
+        var hash = {};
+        for(var i=0; i<chosenMarkers.length; i+=1) {
+            hash[chosenMarkers[i]] = i;
+        }
+        if(hash.hasOwnProperty(markerLocation)) {
+            //if point is found, delete item at that location in array
+            chosenMarkers.splice(hash[markerLocation],1);
+        }
       });
-    }
+    });
 
     $("#new_map").submit(function(e) {
       //intercept and stop form submission event

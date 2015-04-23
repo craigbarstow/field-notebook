@@ -9,7 +9,7 @@
     <h2><%= @project.title.titleize %><h2>
     <h4>Location: <%= @project.location %></h4>
     <h4>Coordinates: <%= @project.coordinates %></h4>
-    <h4>Date: <%= @project.date %></h4>
+    <h4>Date: <%= DateCreator.stringify(@project.date) %></h4>
     <p>Description: <%= @project.description %></p>
   </div>
   <div class="small-12 columns" id="add-content-bar">

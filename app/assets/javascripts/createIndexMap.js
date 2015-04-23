@@ -46,9 +46,9 @@ $(document).ready(function() {
         //set map view to include all projects
         var bounds = new L.LatLngBounds(coordsArray);
         console.log(coordsArray);
+        console.log(bounds);
         map.fitBounds(bounds);
         //FIXME: zoom level not set properly
-        // map.setZoom(12);
       }
     });
 

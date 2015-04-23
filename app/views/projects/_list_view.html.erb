@@ -28,7 +28,7 @@
       <div class="project-wrapper">
         <h2 class="project-index-title"><%= project.title.titleize %></h2>
         <h3>Location: <%= project.location %></h3>
-        <h3>Date: <%= project.date %></h3>
+        <h3>Date: <%= DateCreator.stringify(project.date) %></h3>
       </div>
     <% end %>
   <% end %>

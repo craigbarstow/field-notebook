@@ -108,7 +108,7 @@ class ProjectsController < ApplicationController
           project_hash = {
             path: project_path(project),
             title: project.title.titleize,
-            date: project.date,
+            date: DateCreator.stringify(project.date),
             coordinates: project.coordinates
           }
           map_data << project_hash

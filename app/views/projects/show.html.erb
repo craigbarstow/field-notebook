@@ -50,7 +50,7 @@
     <% elsif content_item[:type] == :map %>
       <div class="project-map-container small-12 columns">
         <h3><%= content_item[:map].title %></h3>
-        <div class="small-12 column project-map" map-id="map-<%= content_item[:map].id %>">
+        <div class="small-12 column project-map" id="map-<%= content_item[:map].id %>">
         </div>
         <p><%= content_item[:map].caption %></p>
       </div>

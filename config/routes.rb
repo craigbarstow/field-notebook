@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "projects/search", to: "projects#index", as: "search"
   get "sort/:sort", to: "projects#index", as: "sort"
 
+  get "projects/maps/:id", to: "maps#return_content"
+
   resources :projects, only: [:index, :new, :create, :show, :destroy, :edit, :update] do
     resources :text_areas, only: [:create, :update, :destroy]
     resources :photos, only: [:new, :create, :edit, :update, :destroy]

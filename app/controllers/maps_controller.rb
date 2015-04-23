@@ -29,4 +29,24 @@ class MapsController < ApplicationController
       render js: "window.location = '#{new_project_map(Project.find([params[:project_id]]))}'"
     end
   end
+
+  def return_content
+    map_id = params[:id]
+    #FIXME add exception handling in case map cant be found
+    map = Map.find(map_id)
+    map_points = MapPoint.where(map_id: map_id)
+    points_array = []
+    map_points.each do |point|
+      points_array << {lat: point.latitude, lng: point.longitude}
+    end
+    map_data = {
+      center_lat: map.center_lat,
+      center_lng: map.center_lng,
+      zoom: map.zoom,
+      points: points_array
+    }
+    respond_to do |format|
+      format.json { render :json => map_data }
+    end
+  end
 end

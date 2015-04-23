@@ -57,14 +57,23 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @project_contents = []
+    #gather all text areas for project
     @text_areas = TextArea.where(project_id: @project.id)
     @text_areas.each do |text_area|
       @project_contents << {type: :text_area, content: text_area}
     end
+    #gather all photos for project
     @photos = Photo.where(project_id: @project.id)
     @photos.each do |photo|
       @project_contents << {type: :photo, image: photo }
     end
+    #gather all maps for project
+    @maps = Map.where(project_id: @project.id)
+    #pass map id, title, and caption, retrieve rest of info with ajax
+    @maps.each do |map|
+      @project_contents << {type: :map, map: map}
+    end
+
     @project_contents
   end
 

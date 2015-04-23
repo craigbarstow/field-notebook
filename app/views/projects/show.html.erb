@@ -16,7 +16,6 @@
     <%= link_to "Edit Basic Info", edit_project_path(@project.id), class: 'small-3 columns button large' %>
     <div class="small-3 columns button large" id="add-txt-btn">Add Text</div>
     <%= link_to "Add Photo", new_project_photo_path(@project), class: "small-3 columns button large" %>
-    <!-- <div class="small-3 columns button large" id="add-map-btn">Add a Map</div> -->
     <%= link_to "Add Map", new_project_map_path(@project), class: "small-3 columns button large" %>
   </div>
   <div id="project-content" class="small-12 columns">
@@ -47,6 +46,13 @@
           class: "button tiny edit-image-button" %>
         <%= link_to "Delete Photo", project_photo_path(@project.id, content_item[:image]),
           method: :delete, class: "button tiny delete-image-button" %>
+      </div>
+    <% elsif content_item[:type] == :map %>
+      <div class="project-map-container small-12 columns">
+        <h3><%= content_item[:map].title %></h3>
+        <div class="small-12 column project-map" map-id="map-<%= content_item[:map].id %>">
+        </div>
+        <p><%= content_item[:map].caption %></p>
       </div>
     <% end %>
   <% end %>

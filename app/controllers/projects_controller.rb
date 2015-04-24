@@ -81,15 +81,15 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    project = Project.find(params[:id])
+    @project = Project.find(params[:id])
     #FIXME validate coordinates in similar way as in create
-    project.update_attributes(project_params)
-    if project.save
+    @project.update_attributes(project_params)
+    if @project.save
       flash[:notice] = ["Project Successfully Updated"]
-      redirect_to(projects_path(project))
+      redirect_to(project_path(@project))
     else
-      flash[:notice] = @question.errors.full_messages
-      redirect_to(projects_path(project))
+      flash[:notice] = @project.errors.full_messages
+      render :edit
     end
   end
 

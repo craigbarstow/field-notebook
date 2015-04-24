@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="column" id="new-project-wrapper">
+  <div class="small-12 column" id="new-project-wrapper">
     <h1>Add a Project</h1>
     <%= form_for Project.new do |f| %>
-      <table>
+      <table id="new-project-table">
         <tr>
           <td><%= f.label :title %></td>
           <td><%= f.text_field :title %></td>
@@ -31,7 +31,7 @@
     <% end %>
   </div>
   <div class="column" id="choose-coords-map-wrapper">
-    <div class="button radius" id="cancel-coord-btn">Cancel</div>
+    <div class="button small" id="cancel-coord-btn">Cancel</div>
     <h2>Click on the Map to Set Coordinates</h2>
     <div id="choose-coords-map"></div>
   </div>

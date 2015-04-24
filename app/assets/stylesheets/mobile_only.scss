@@ -1,5 +1,18 @@
-// mobile only stylesheet
+//color definitions
+$black: #2a2d34;
+$background-greenish: #eff0dc;
+$brick: #ad4026;
+$brick-hover: #6e2918;
+$beige: #d9ab54;
+$light-beige: #f9f3e6;
+$light-grey: #ECEBE8;
+$unhover-grey: #f7f9f9;
+$white: #fff;
+$background-grey: #cccccc;
+$dark-grey: #888;
 
+
+// mobile only stylesheet
 @media (max-width: 40em) {
   #user_email {
     height: 10em;
@@ -19,7 +32,16 @@
   }
 
   .index-search-wrapper {
-    /* display: none; */
+    margin-bottom: 1rem;
+  }
+
+  .index-search-wrapper {
+    border-right: none;
+  }
+
+  .tabs-content {
+    border: none;
+    border-top: 1px solid $black;
   }
 
   /***************************
@@ -36,8 +58,35 @@
   }
 }
 
+//for larger screens
 @media (min-width: 40em) {
   #background-img {
     background-image: url('http://phandroid.s3.amazonaws.com/wp-content/uploads/2014/10/mountains.jpg');
+  }
+
+  /************************
+  New Project Tab
+  ************************/
+  #new-project-table tr:nth-of-type(even) {
+    background-color: transparent !important;
+  }
+
+  /************************
+  Image Edit/Create Pages
+  ************************/
+  .img-wrapper {
+    border: 1px solid $black;
+    background-color: $light-beige;
+    margin-top: 10rem;
+  }
+
+  /************************
+  Map Edit/Create Pages
+  ************************/
+
+  #new-map-wrapper {
+    border: 1px solid $black;
+    background-color: $light-beige;
+    margin-top: 2rem;
   }
 }

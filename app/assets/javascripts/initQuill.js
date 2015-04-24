@@ -11,10 +11,10 @@ $( document ).ready(function() {
   '<div id="toolbar" class="small-12 columns">' +
     '<span class="ql-format-group">' +
       '<select title="Size" class="ql-size small-2 columns">' +
-        '<option value="12px" selected>Small</option>' +
-        '<option value="14px">Normal</option>' +
-        '<option value="18px">Large</option>' +
-        '<option value="32px">Huge</option>' +
+        '<option value="24px" selected>Small</option>' +
+        '<option value="32px">Normal</option>' +
+        '<option value="44px">Large</option>' +
+        '<option value="56px">Huge</option>' +
       '</select>' +
       '<span class="ql-bold button small">Bold</span>' +
       '<span class="ql-italic button small">Italic</span>' +

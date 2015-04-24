@@ -1,22 +1,28 @@
 <div id="show-link-wrapper" class="row">
   <div class="small-4 column nav-btn-wrapper">
-    <%= link_to "< Home", projects_path, class: 'button large nav-btn' %>
+    <%= link_to "Home", projects_path, class: 'button large nav-btn' %>
   </div>
   <div class="button large small-4 column nav-btn-wrapper" id="edit-view-mode-btn">Edit Mode</div>
 </div>
 <div class="row" id="show-project-wrapper">
-  <div class="small-10 columns">
-    <h2><%= @project.title.titleize %><h2>
+  <div class="small-10 columns" id="basic-info-wrapper">
+    <h1 id="show-project-title"><%= @project.title.titleize %><h1>
     <h4>Location: <%= @project.location %></h4>
-    <h4>Coordinates: <%= @project.coordinates %></h4>
-    <h4>Date: <%= DateCreator.stringify(@project.date) %></h4>
-    <p>Description: <%= @project.description %></p>
+    <% if @project.coordinates != "" %>
+      <h4>Coordinates: <%= @project.coordinates %></h4>
+    <% end %>
+    <% if @project.date != "" %>
+      <h4>Date: <%= DateCreator.stringify(@project.date) %></h4>
+    <% end %>
+    <% if @project.description != "" %>
+      <p>Description: <%= @project.description %></p>
+    <% end %>
   </div>
   <div class="small-12 columns" id="add-content-bar">
-    <%= link_to "Edit Basic Info", edit_project_path(@project.id), class: 'small-3 columns button large' %>
-    <div class="small-3 columns button large" id="add-txt-btn">Add Text</div>
-    <%= link_to "Add Photo", new_project_photo_path(@project), class: "small-3 columns button large" %>
-    <%= link_to "Add Map", new_project_map_path(@project), class: "small-3 columns button large" %>
+    <%= link_to "Edit Basic Info", edit_project_path(@project.id), class: 'small-3 columns button large add-content-btn-left' %>
+    <div class="small-3 columns button large add-content-btn-right" id="add-txt-btn">Add Text</div>
+    <%= link_to "Add Photo", new_project_photo_path(@project), class: "small-3 columns button large add-content-btn-right" %>
+    <%= link_to "Add Map", new_project_map_path(@project), class: "small-3 columns button large add-content-btn-right" %>
   </div>
   <div id="project-content" class="small-12 columns">
   <% @project_contents.each do |content_item| %>
@@ -42,7 +48,7 @@
         <p><%= content_item[:content].caption %></p>
       </div>
       <div class="edit-controls small-12 columns">
-        <%= link_to "Edit Photo", edit_project_photo_path(@project.id, content_item[:content]),
+        <%= link_to "Edit Photo Info", edit_project_photo_path(@project.id, content_item[:content]),
           class: "button tiny edit-image-button" %>
         <%= link_to "Delete Photo", project_photo_path(@project.id, content_item[:content]),
           method: :delete, class: "button tiny delete-image-button" %>

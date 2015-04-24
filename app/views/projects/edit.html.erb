@@ -1,7 +1,7 @@
 <div class="row">
   <div class="column" id="new-project-wrapper">
     <%= link_to "< Back", project_path(@project), class: 'button radius' %>
-    <%= link_to("Delete Project", project_path, :confirm => 'Are you sure?',
+    <%= link_to("Delete Project", project_path, confirm: 'Are you sure?',
     :method => :delete, :class => 'action button radius') %>
     <h1>Edit Your Project</h1>
     <%= form_for @project do |f| %>

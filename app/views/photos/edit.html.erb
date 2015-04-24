@@ -1,11 +1,12 @@
-<div class="small-12 columns" id="edit-img-wrapper">
+<div class="small-12 columns img-wrapper" id="edit-img-wrapper">
+  <h1>Edit Photo</h1>
   <%= form_for [@project, @photo] do |f| %>
     <%= f.label :title %>
-    <%= f.text_area :title %>
+    <%= f.text_field :title %>
 
     <%= f.label :caption %>
     <%= f.text_area :caption %>
 
-    <%= f.submit "Update Information" %>
+    <%= f.submit "Update Information", class: "button radius" %>
   <% end %>
 <div>

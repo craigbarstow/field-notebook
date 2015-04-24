@@ -25,6 +25,7 @@ $( document ).ready(function() {
   '</div>' +
     '<div id="editor" class="small-12 columns"></div>' +
     '<span id="save-quill" class="button small">Save and Close Editor</span>' +
+    '<span id="cancel-quill" class="button small">Cancel</span>' +
   '</div>';
 
   $("#add-txt-btn").click(function(evt){
@@ -63,6 +64,11 @@ $( document ).ready(function() {
     $('html, body').animate({
       scrollTop: $("#editor-wrapper").offset().top - 10},
       300);
+
+    $("#cancel-quill").click(function() {
+      alert("cancel");
+      $("#text-wrapper-"+textAreaID).hide();
+    });
 
     $("#save-quill").click(function() {
       //get quill editor contents

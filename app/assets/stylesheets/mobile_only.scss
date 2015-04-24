@@ -31,8 +31,14 @@ $dark-grey: #888;
     margin-top: 0;
   }
 
+  .tab-title {
+    width: 33.33%;
+  }
+
   .index-search-wrapper {
     margin-bottom: 1rem;
+    display: none;
+    padding-top: .5rem;
   }
 
   .index-search-wrapper {
@@ -65,10 +71,29 @@ $dark-grey: #888;
   }
 
   /************************
+  list view Tab
+  ************************/
+  .index-search-wrapper {
+    display: inline-block;
+  }
+
+  #show-search-btn {
+    display: none;
+  }
+
+  #hide-search-btn {
+    display: none;
+  }
+  /************************
   New Project Tab
   ************************/
   #new-project-table tr:nth-of-type(even) {
-    background-color: transparent !important;
+    /*background-color: transparent !important;*/
+    background-color: $light-beige;
+  }
+
+  #new-project-table tbody tr td {
+    background-color: $light-beige;
   }
 
   /************************

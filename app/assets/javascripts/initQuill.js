@@ -1,7 +1,7 @@
 $( document ).ready(function() {
   //set event handlers for relevant elements
   resetEventHandlers();
-  //get project ID from url for use with ajax
+  //get project ID from url for use with ajax calls
   var parser = document.createElement('a');
   parser.href = window.location.href;
   var projectID = parser.pathname.replace('/projects/','');

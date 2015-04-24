@@ -91,6 +91,7 @@ Projects Index
   width: 33%;
   border: 1px solid $black;
   background-color: $light-beige;
+  margin-bottom: 3rem;
 }
 
 .tab-title {
@@ -110,6 +111,10 @@ Projects Index
   border-left: none;
 }
 
+#show-search-btn {
+  margin-left: 1rem;
+}
+
 #map-canvas {
   margin: 0 auto;
 }
@@ -124,7 +129,7 @@ Projects Index
 
 #choose-coords-map {
   width: 100%;
-  height: 60em;
+  height: 30rem;
 }
 
 .pagination span {
@@ -192,8 +197,13 @@ Projects Show
 }
 
 .project-map {
-  width: 100%;
+  width: 90%;
   height: 35rem;
+  margin: 0 auto;
+}
+
+#cancel-coord-btn {
+
 }
 
 /*****************************************

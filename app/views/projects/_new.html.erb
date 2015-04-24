@@ -26,7 +26,7 @@
           <td><%= f.label :description %></td>
           <td><%= f.text_area :description %></td>
         </tr>
-        <tr><td><%= f.submit "Add Project", class: 'button radius' %></td></tr>
+        <tr><td colspan="2"><%= f.submit "Add Project", class: 'button radius', id: "submit-proj-btn" %></td></tr>
       </table>
     <% end %>
   </div>

@@ -7,9 +7,9 @@
     <%= submit_tag("Search", class: "button small") %>
   <% end %>
   <h3>Sort By:</h3>
-  <%= link_to "Title", sort_path(:title), class: "button small radius" %>
-  <%= link_to "Newest", sort_path(:newest), class: "button small radius" %>
-  <%= link_to "Recently Modified", sort_path(:recently_modified), class: "button small radius" %>
+  <%= link_to "Title", projects_path(sort_by: 'title', direction: 'asc'), class: "button small radius" %>
+  <%= link_to "Newest", projects_path(sort_by: 'created_at', direction: 'desc'), class: "button small radius" %>
+  <%= link_to "Recently Modified", projects_path(sort_by: 'updated_at', direction: 'desc'), class: "button small radius" %>
 </div>
 <div class="small-12 medium-9 columns">
 <% if @search %>

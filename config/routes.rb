@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post 'projects/:id/textareas/:id/destroy', to: 'text_areas#destroy'
 
   get "projects/search", to: "projects#index", as: "search"
-  get "sort/:sort", to: "projects#index", as: "sort"
+  # get "sort/:sort", to: "projects#index", as: "sort"
 
   get "projects/maps/:id", to: "maps#return_content"
 

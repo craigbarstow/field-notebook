@@ -1,11 +1,13 @@
 <div class="row">
-  <div class="column" id="new-project-wrapper">
-    <%= link_to "< Back", project_path(@project), class: 'button radius' %>
-    <%= link_to("Delete Project", project_path, confirm: 'Are you sure?',
-    :method => :delete, :class => 'action button radius') %>
-    <h1>Edit Your Project</h1>
+  <div class="small-12 column" id="edit-project-wrapper">
+    <div id="edit-btn-wrapper">
+      <%= link_to "< Back", project_path(@project), class: 'button radius', id: "edit-back-btn" %>
+      <%= link_to("Delete Project", project_path, confirm: 'Are you sure?',
+      :method => :delete, :class => 'action button radius', id: "delete-proj-btn") %>
+    </div>
+    <h1 id="edit-title">Edit Your Project</h1>
     <%= form_for @project do |f| %>
-      <table>
+      <table class="" id="edit-project-table">
         <tr>
           <td><%= f.label :title %></td>
           <td><%= f.text_field :title %></td>
@@ -30,7 +32,7 @@
           <td><%= f.label :description %></td>
           <td><%= f.text_area :description %></td>
         </tr>
-        <tr><td><%= f.submit "Submit Edits", class: 'button radius' %></td></tr>
+        <tr><td colspan="2"><%= f.submit "Submit Edits", class: 'button radius' %></td></tr>
       </table>
     <% end %>
   </div>

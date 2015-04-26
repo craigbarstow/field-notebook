@@ -11,21 +11,21 @@ $( document ).ready(function() {
   '<div id="toolbar" class="small-12 columns">' +
     '<span class="ql-format-group">' +
       '<select title="Size" class="ql-size small-2 columns">' +
-        '<option value="24px" selected>Small</option>' +
-        '<option value="32px">Normal</option>' +
-        '<option value="44px">Large</option>' +
-        '<option value="56px">Huge</option>' +
+        '<option value="16px" selected>Small</option>' +
+        '<option value="23px">Normal</option>' +
+        '<option value="32px">Large</option>' +
+        '<option value="50px">Huge</option>' +
       '</select>' +
-      '<span class="ql-bold button small">Bold</span>' +
-      '<span class="ql-italic button small">Italic</span>' +
-      '<span class="ql-underline button small">Underline</span>' +
-      '<span class="ql-list button small">List</span>' +
-      '<span class="ql-bullet button small">Bullet</span>' +
+      '<span class="ql-bold button small btn-right">Bold</span>' +
+      '<span class="ql-italic button small btn-right">Italic</span>' +
+      '<span class="ql-underline button small btn-right">Underline</span>' +
+      '<span class="ql-list button small btn-right">List</span>' +
+      '<span class="ql-bullet button small btn-right">Bullet</span>' +
     '</span>' +
   '</div>' +
     '<div id="editor" class="small-12 columns"></div>' +
-    '<span id="save-quill" class="button small">Save and Close Editor</span>' +
-    '<span id="cancel-quill" class="button small">Cancel</span>' +
+    '<span id="save-quill" class="button small btn-right">Save and Close Editor</span>' +
+    '<span id="cancel-quill" class="button small btn-right">Cancel</span>' +
   '</div>';
 
   $("#add-txt-btn").click(function(evt){
@@ -89,10 +89,10 @@ $( document ).ready(function() {
               '</div>' +
               '<div class="edit-controls small-12 columns">' +
                 '<div class="button tiny edit-text-area-button" area-id="'+contentID+'">' +
-                  'edit' +
+                  'Edit Text' +
                 '</div>' +
                 '<div class="button tiny delete-text-area-button" area-id="'+contentID+'">' +
-                  'delete' +
+                  'Delete Text Area' +
                 '</div>' +
               '</div>' +
             '</div>';

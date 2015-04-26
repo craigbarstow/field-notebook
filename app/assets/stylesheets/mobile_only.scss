@@ -114,4 +114,25 @@ $dark-grey: #888;
     background-color: $light-beige;
     margin-top: 2rem;
   }
+
+  /************************
+  Edit Project Info
+  ************************/
+  #edit-project-wrapper {
+    margin-top: 2rem;
+    border: 1px solid $black;
+    background-color: $light-beige;
+  }
+
+  #edit-project-table tr:nth-of-type(even) {
+    /*background-color: transparent !important;*/
+    background-color: $light-beige;
+  }
+
+  #edit-project-table tbody tr td {
+    background-color: $light-beige;
+  }
+
+
+
 }

@@ -1,5 +1,6 @@
 class MapsController < ApplicationController
   def new
+    @project = Project.find(params[:project_id])
     @map = Map.new
   end
 

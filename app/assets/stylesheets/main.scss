@@ -132,9 +132,14 @@ Projects Index
   height: 30rem;
 }
 
+.pagination {
+  margin-bottom: 3rem;
+}
+
 .pagination span {
   min-height: 3rem;
   min-width: 4rem;
+  border-radius: 2px;
   background-color: $brick;
   text-color: $background-grey;
   text-decoration: none;
@@ -209,10 +214,14 @@ Projects Show
   max-width: 5rem;
 }
 
+.image-container {
+  min-width: 1rem;
+}
+
 .show-img {
+  display: block;
   max-width: 90%;
   margin: 0 auto;
-  margin-left: 5%;
 }
 
 .caption {

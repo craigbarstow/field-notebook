@@ -66,7 +66,7 @@ $( document ).ready(function() {
       300);
 
     $("#cancel-quill").click(function() {
-      alert("cancel");
+      // alert("cancel");
       $("#text-wrapper-"+textAreaID).hide();
     });
 
@@ -106,9 +106,9 @@ $( document ).ready(function() {
             $("#project-content").append(textAreaHTML);
             resetEventHandlers();
           }
-          alert(data["message"]);
+          // alert(data["message"]);
         } else {
-          alert(data["message"]);
+          // alert(data["message"]);
         }
       });
     });
@@ -132,9 +132,9 @@ $( document ).ready(function() {
         if (data["success"] == true) {
           //destroy div
           $("#text-wrapper-"+textAreaID).remove();
-          alert("Text Area Successfully Deleted.");
+          // alert("Text Area Successfully Deleted.");
         } else {
-          alert("Failed to Delete Text Area.");
+          // alert("Failed to Delete Text Area.");
         }
       });
     });

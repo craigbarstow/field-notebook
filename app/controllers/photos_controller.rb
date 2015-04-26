@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
   def new
+    @project = Project.find(params[:project_id])
     @photo = Photo.new
   end
 

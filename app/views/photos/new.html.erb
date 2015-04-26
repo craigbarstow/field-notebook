@@ -1,6 +1,7 @@
 <div class="small-12 columns img-wrapper" id="img-upload-wrapper">
+  <%= link_to "< Back", project_path(@project), class: 'button radius back-btn' %>
   <h1>Add a Photo</h1>
-  <%= form_for [:project, @photo], multiple: true do |f| %>
+  <%= form_for [@project, @photo], multiple: true do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %>
 

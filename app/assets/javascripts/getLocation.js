@@ -37,13 +37,21 @@ $( document ).ready(function() {
 
   $( "#show-coords-map-btn" ).click(function() {
     coordsMap.invalidateSize();
-    $("#new-project-wrapper").hide();
+    if ($("#new-project-wrapper").length) {
+      $("#new-project-wrapper").hide();
+    } else {
+      $("#edit-project-wrapper").hide();
+    }
     $("#choose-coords-map-wrapper").show();
 
     $("#cancel-coord-btn").click(function() {
       coordsMap.invalidateSize();
       $("#choose-coords-map-wrapper").hide();
-      $("#new-project-wrapper").show();
+      if ($("#new-project-wrapper").length) {
+        $("#new-project-wrapper").show();
+      } else {
+        $("#edit-project-wrapper").show();
+      }
     })
   })
 });

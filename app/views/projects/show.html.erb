@@ -6,23 +6,25 @@
 </div>
 <div class="row" id="show-project-wrapper">
   <div class="small-10 columns" id="basic-info-wrapper">
-    <h1 id="show-project-title"><%= @project.title.titleize %><h1>
-    <h4>Location: <%= @project.location %></h4>
-    <% if @project.coordinates != "" %>
-      <h4>Coordinates: <%= @project.coordinates %></h4>
-    <% end %>
-    <% if @project.date != "" %>
-      <h4>Date: <%= DateCreator.stringify(@project.date) %></h4>
-    <% end %>
-    <% if @project.description != "" %>
-      <p>Description: <%= @project.description %></p>
-    <% end %>
+    <div id="basic-text-wrapper">
+      <h1 id="show-project-title"><%= @project.title.titleize %><h1>
+      <h4>Location: <%= @project.location %></h4>
+      <% if @project.coordinates != "" %>
+        <h4>Coordinates: <%= @project.coordinates %></h4>
+      <% end %>
+      <% if @project.date != "" %>
+        <h4>Date: <%= DateCreator.stringify(@project.date) %></h4>
+      <% end %>
+      <% if @project.description != "" %>
+        <p>Description: <%= @project.description %></p>
+      <% end %>
+    </div>
   </div>
   <div class="small-12 columns" id="add-content-bar">
     <%= link_to "Edit Basic Info", edit_project_path(@project.id), class: 'small-3 columns button large add-content-btn-left' %>
-    <div class="small-3 columns button large add-content-btn-right" id="add-txt-btn">Add Text</div>
-    <%= link_to "Add Photo", new_project_photo_path(@project), class: "small-3 columns button large add-content-btn-right" %>
-    <%= link_to "Add Map", new_project_map_path(@project), class: "small-3 columns button large add-content-btn-right" %>
+    <div class="small-3 columns button large btn-right" id="add-txt-btn">Add Text</div>
+    <%= link_to "Add Photo", new_project_photo_path(@project), class: "small-3 columns button large btn-right" %>
+    <%= link_to "Add Map", new_project_map_path(@project), class: "small-3 columns button large btn-right" %>
   </div>
   <div id="project-content" class="small-12 columns">
   <% @project_contents.each do |content_item| %>
@@ -34,35 +36,35 @@
         </div>
         <div class="edit-controls small-12 columns">
           <div class="button tiny edit-text-area-button" area-id="<%= content_id %>">
-            edit
+            Edit Text
           </div>
           <div class="button tiny delete-text-area-button" area-id="<%= content_id %>">
-            delete
+            Delete Text Area
           </div>
         </div>
       </div>
     <% elsif content_item[:type] == :photo %>
-      <div class="image-container small-12 columns">
-        <h3><%= content_item[:content].title %></h3>
-        <%= image_tag(content_item[:content].image) %>
-        <p><%= content_item[:content].caption %></p>
-      </div>
-      <div class="edit-controls small-12 columns">
-        <%= link_to "Edit Photo Info", edit_project_photo_path(@project.id, content_item[:content]),
-          class: "button tiny edit-image-button" %>
-        <%= link_to "Delete Photo", project_photo_path(@project.id, content_item[:content]),
-          method: :delete, class: "button tiny delete-image-button" %>
+      <div class="image-container small-12 columns show-content-wrapper">
+        <h3 class="content-title"><%= content_item[:content].title %></h3>
+        <%= image_tag(content_item[:content].image, class: "show-img") %>
+        <p class="caption"><%= content_item[:content].caption %></p>
+        <div class="edit-controls small-12 columns">
+          <%= link_to "Edit Photo Info", edit_project_photo_path(@project.id, content_item[:content]),
+            class: "button tiny edit-image-button" %>
+          <%= link_to "Delete Photo", project_photo_path(@project.id, content_item[:content]),
+            method: :delete, class: "button tiny delete-image-button btn-delete" %>
+        </div>
       </div>
     <% elsif content_item[:type] == :map %>
-      <div class="project-map-container small-12 columns">
-        <h3><%= content_item[:content].title %></h3>
+      <div class="project-map-container small-12 columns show-content-wrapper">
+        <h3 class="content-title"><%= content_item[:content].title %></h3>
         <div class="project-map" id="map-<%= content_item[:content].id %>">
         </div>
-        <p><%= content_item[:content].caption %></p>
-      </div>
-      <div class="edit-controls small-12 columns">
-        <%= link_to "Delete Map", project_map_path(@project.id, content_item[:content]),
-          method: :delete, class: "button tiny delete-map-button" %>
+        <p class="caption"><%= content_item[:content].caption %></p>
+        <div class="edit-controls small-12 columns">
+          <%= link_to "Delete Map", project_map_path(@project.id, content_item[:content]),
+            method: :delete, class: "button tiny delete-map-button btn-delete" %>
+        </div>
       </div>
     <% end %>
   <% end %>

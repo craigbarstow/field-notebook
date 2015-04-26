@@ -15,12 +15,14 @@ class MapsController < ApplicationController
       #get id of new map
       map_id = @map.id
       #save all points
-      map_info[:point_array].each do |key, value|
-        @point = MapPoint.create(map_id: map_id, latitude: value[0],
-          longitude: value[1])
-        unless @point.save
-          flash[:notice] = @point.errors.full_messages
-          render js: "window.location = '#{new_project_map(Project.find([params[:project_id]]))}'"
+      if map_info[:point_array] != nil
+        map_info[:point_array].each do |key, value|
+          @point = MapPoint.create(map_id: map_id, latitude: value[0],
+            longitude: value[1])
+          unless @point.save
+            flash[:notice] = @point.errors.full_messages
+            render js: "window.location = '#{new_project_map(Project.find([params[:project_id]]))}'"
+          end
         end
       end
       flash[:notice] = "Map Successfully Added"

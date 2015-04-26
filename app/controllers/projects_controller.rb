@@ -6,18 +6,8 @@ class ProjectsController < ApplicationController
       "to_tsvector(title) @@ plainto_tsquery(?)", [params[:search]]
       ).page(params[:page]).per(5)
       @search = true
-    elsif params[:sort]
-      #FIXME, these dont seem to work
-      if params[:sort] == :title
-        @projects = Project.where(user_id: current_user.id).order(:title).page(params[:page]).per(5)
-      elsif params[:sort] == :newest
-        @projects = Project.where(user_id: current_user.id).order(:created_at).page(params[:page]).per(5)
-      elsif params[:sort] == :recently_modified
-        @projects = Project.where(user_id: current_user.id).order(:updated_at).page(params[:page]).per(5)
-      else
-        #if sort param not in approved list, just return all projects
-        @projects = Project.where(user_id: current_user.id).page(params[:page]).per(5)
-      end
+    elsif params[:sort_by] && params[:direction]
+      @projects = sort_projects_by_params(params[:sort_by])
     else
       @projects = Project.where(user_id: current_user.id).page(params[:page]).per(5)
     end
@@ -88,7 +78,7 @@ class ProjectsController < ApplicationController
       flash[:notice] = ["Project Successfully Updated"]
       redirect_to(project_path(@project))
     else
-      flash[:notice] = @project.errors.full_messages
+      flash[:notice] = @project.errors.full_messages[0]
       render :edit
     end
   end
@@ -121,6 +111,10 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def sort_projects_by_params(sort_param)
+    Project.where(user_id: current_user.id).order(sort_param => params[:direction]).page(params[:page]).per(5)
+  end
 
   def project_params
     params.require(:project).permit(:title, :date, :location, :coordinates,

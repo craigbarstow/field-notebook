@@ -14,14 +14,19 @@ $dark-grey: #888;
 
 // mobile only stylesheet
 @media (max-width: 40em) {
-  #user_email {
-    height: 10em;
-  }
+
   /***************************
   General
   ***************************/
   #background-img {
     display: none;
+  }
+
+  /***************************
+  Devise
+  ***************************/
+  #devise-wrapper {
+    margin-top: 2rem;
   }
 
   /***************************
@@ -66,8 +71,16 @@ $dark-grey: #888;
 
 //for larger screens
 @media (min-width: 40em) {
+
   #background-img {
     background-image: url('http://phandroid.s3.amazonaws.com/wp-content/uploads/2014/10/mountains.jpg');
+  }
+
+  /***************************
+  Devise
+  ***************************/
+  #devise-wrapper {
+    margin-top: 11rem;
   }
 
   /************************

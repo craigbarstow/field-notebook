@@ -75,7 +75,7 @@ class ProjectsController < ApplicationController
     #FIXME validate coordinates in similar way as in create
     @project.update_attributes(project_params)
     if @project.save
-      flash[:notice] = ["Project Successfully Updated"]
+      flash[:notice] = "Project Successfully Updated"
       redirect_to(project_path(@project))
     else
       flash[:notice] = @project.errors.full_messages[0]

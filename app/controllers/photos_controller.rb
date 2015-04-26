@@ -12,14 +12,14 @@ class PhotosController < ApplicationController
         image: photo_info[:image], caption: photo_info[:caption],
         title: photo_info[:title])
       if @photo.save
-        flash[:notice] = ["Photo Added"]
+        flash[:notice] = "Photo Added"
         redirect_to(project_path(Project.find([params[:project_id]])))
       else
         flash[:notice] = @question.errors.full_messages
         redirect_to(project_path(Project.find([params[:project_id]])))
       end
     else
-      flash[:notice] = ["Error: No Photo Selected"]
+      flash[:notice] = "Error: No Photo Selected"
       redirect_to(project_path(Project.find([params[:project_id]])))
     end
   end
@@ -33,7 +33,7 @@ class PhotosController < ApplicationController
     photo = Photo.find(params[:id])
     photo.update_attributes(get_photo_params)
     if photo.save
-      flash[:notice] = ["Project Successfully Updated"]
+      flash[:notice] = "Project Successfully Updated"
       redirect_to(project_path(Project.find([params[:project_id]])))
     else
       flash[:notice] = @question.errors.full_messages

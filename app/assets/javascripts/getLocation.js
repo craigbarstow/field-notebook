@@ -20,7 +20,7 @@ $( document ).ready(function() {
        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
     });
 
-    mapDiv = document.getElementById('choose-coords-map');
+    var mapDiv = document.getElementById('choose-coords-map');
     var coordsMap = L.map(mapDiv, {
       center: [40.749960, -97.209603],
       zoom: 4

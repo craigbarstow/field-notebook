@@ -45,7 +45,7 @@ $( document ).ready(function() {
     var actionString = "create";
 
     if (divID) {
-      textAreaID = divID.replace("#text-area-","");
+      var textAreaID = divID.replace("#text-area-","");
       actionString = "/"+ textAreaID +"/update";
       //hide div containing content to be edited
       $("#text-wrapper-"+textAreaID).hide();
@@ -67,6 +67,7 @@ $( document ).ready(function() {
 
     $("#cancel-quill").click(function() {
       // alert("cancel");
+      var textAreaID = divID.replace("#text-area-","");
       $("#text-wrapper-"+textAreaID).hide();
     });
 

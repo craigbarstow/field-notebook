@@ -30,7 +30,7 @@ $(document).ready(function() {
     //get projects data from database
     $.get( "projects/map?mapid=index", function( data ) {
       var coordsArray = [];
-      for (i=0; i<data.length; i++) {
+      for (var i=0; i<data.length; i++) {
         //FIXME make sure coordinates exist
         var coordinatesArray =  data[i].coordinates.split(",");
         coordsArray.push(coordinatesArray);
@@ -45,8 +45,6 @@ $(document).ready(function() {
       if (coordsArray.length > 0) {
         //set map view to include all projects
         var bounds = new L.LatLngBounds(coordsArray);
-        console.log(coordsArray);
-        console.log(bounds);
         map.fitBounds(bounds);
         //FIXME: zoom level not set properly
       }
